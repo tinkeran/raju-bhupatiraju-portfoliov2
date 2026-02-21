@@ -1,1 +1,3 @@
-# Clean URL rewrites handled by _middleware.js
+/resume        /resume.html        200
+/photography   /photography.html   200
+/tools         /tools.html         200
