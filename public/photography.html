@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photography — Raju Bhupatiraju</title>
+<meta name="description" content="Birding and landscape photography portfolio by Raju Bhupatiraju.">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .coming-soon { min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; position: relative; overflow: hidden; }
+  .coming-soon::before { content: 'SOON'; position: absolute; font-family: var(--font-display); font-size: clamp(160px,25vw,360px); color: transparent; -webkit-text-stroke: 1px rgba(26,201,168,0.06); user-select: none; pointer-events: none; }
+  .coming-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .coming-label::before, .coming-label::after { content: ''; width: 24px; height: 1px; background: var(--teal); display: block; }
+  .coming-soon h2 { font-family: var(--font-display); font-size: clamp(48px,6vw,80px); color: var(--white); line-height: 1; margin-bottom: 20px; }
+  .coming-soon p { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 440px; font-weight: 300; margin-bottom: 40px; }
+  .placeholder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 0 80px 80px; }
+  .placeholder-cell { aspect-ratio: 4/3; background: var(--grey); border: 1px solid rgba(245,242,236,0.05); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: border-color .3s; }
+  .placeholder-cell:hover { border-color: rgba(26,201,168,0.3); }
+  .placeholder-cell::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,201,168,0.04), transparent); }
+  .placeholder-cell svg { opacity: .12; width: 48px; height: 48px; color: var(--teal); }
+  .placeholder-cell .cell-label { position: absolute; bottom: 12px; left: 12px; font-family: var(--font-mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: rgba(245,242,236,0.2); }
+  @media (max-width: 768px) { .placeholder-grid { grid-template-columns: 1fr 1fr; padding: 0 24px 48px; } }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav>
+  <a href="/" class="nav-logo">studio<span>r</span>.cc</a>
+  <ul class="nav-links">
+    <li><a href="/resume">Resume</a></li>
+    <li><a href="/photography" class="active">Photography</a></li>
+    <li><a href="/tools">Tools</a></li>
+  </ul>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-bg">LENS</div>
+  <div class="page-label" style="color:var(--teal)">02 — Photography</div>
+  <h1 style="color:var(--white)">Birds &amp;<em style="color:var(--teal)">Landscapes</em></h1>
+  <p>Patience, stillness, and light. Capturing fleeting moments in the wild — from the flash of a kingfisher to the silence of golden hour.</p>
+</div>
+<div class="coming-soon reveal">
+  <div class="coming-label">Portfolio</div>
+  <h2>Coming Soon</h2>
+  <p>The full gallery is being curated. Check back soon for birding and landscape photography from the field.</p>
+  <a href="/" class="btn btn-teal">Back to Home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+</div>
+<div class="placeholder-grid">
+  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><div class="cell-label">Birding</div></div>
+  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg><div class="cell-label">Landscape</div></div>
+  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div class="cell-label">Wildlife</div></div>
+  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div class="cell-label">Nature</div></div>
+  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg><div class="cell-label">Golden Hour</div></div>
+  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div class="cell-label">Field Notes</div></div>
+</div>
+<footer>
+  <div class="footer-logo">studio<span>r</span>.cc</div>
+  <p>© 2025 Raju Bhupatiraju. All rights reserved.</p>
+  <div class="footer-version">v2.0</div>
+</footer>
+<script src="/assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "studior-cc",
+  "version": "2.0.0",
+  "description": "studior.cc v2.0 — Personal site of Raju Bhupatiraju. Cloudflare Pages + Workers.",
+  "scripts": {
+    "dev": "wrangler pages dev ./public --compatibility-date=2024-01-01",
+    "deploy": "wrangler pages deploy ./public --project-name=studior-cc",
+    "preview": "npx serve ./public"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
