@@ -4,60 +4,268 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Photography — Raju Bhupatiraju</title>
-<meta name="description" content="Birding and landscape photography portfolio by Raju Bhupatiraju.">
+<meta name="description" content="Bird and landscape photography by Raju Bhupatiraju.">
 <link rel="stylesheet" href="/assets/style.css">
 <style>
-  .coming-soon { min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; position: relative; overflow: hidden; }
-  .coming-soon::before { content: 'SOON'; position: absolute; font-family: var(--font-display); font-size: clamp(160px,25vw,360px); color: transparent; -webkit-text-stroke: 1px rgba(26,201,168,0.06); user-select: none; pointer-events: none; }
-  .coming-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-  .coming-label::before, .coming-label::after { content: ''; width: 24px; height: 1px; background: var(--teal); display: block; }
-  .coming-soon h2 { font-family: var(--font-display); font-size: clamp(48px,6vw,80px); color: var(--white); line-height: 1; margin-bottom: 20px; }
-  .coming-soon p { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 440px; font-weight: 300; margin-bottom: 40px; }
-  .placeholder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 0 80px 80px; }
-  .placeholder-cell { aspect-ratio: 4/3; background: var(--grey); border: 1px solid rgba(245,242,236,0.05); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: border-color .3s; }
-  .placeholder-cell:hover { border-color: rgba(26,201,168,0.3); }
-  .placeholder-cell::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,201,168,0.04), transparent); }
-  .placeholder-cell svg { opacity: .12; width: 48px; height: 48px; color: var(--teal); }
-  .placeholder-cell .cell-label { position: absolute; bottom: 12px; left: 12px; font-family: var(--font-mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: rgba(245,242,236,0.2); }
-  @media (max-width: 768px) { .placeholder-grid { grid-template-columns: 1fr 1fr; padding: 0 24px 48px; } }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  display: flex; gap: 8px; justify-content: center;
+  padding: 40px 24px 0; flex-wrap: wrap;
+}
+.filter-btn {
+  font-size: 13px; font-weight: 500; letter-spacing: -.01em;
+  padding: 8px 18px; border-radius: 980px; border: none;
+  background: var(--off); color: var(--ink3);
+  cursor: none; transition: background .2s, color .2s;
+}
+.filter-btn:hover { background: var(--off2); color: var(--ink); }
+.filter-btn.active { background: var(--ink); color: #fff; }
+
+/* ── MASONRY GRID ── */
+.gallery-wrap {
+  max-width: 1100px; margin: 0 auto;
+  padding: 48px 24px 100px;
+  columns: 3; column-gap: 12px;
+}
+.gallery-item {
+  break-inside: avoid; margin-bottom: 12px;
+  border-radius: 16px; overflow: hidden; position: relative;
+  cursor: none; transition: transform .35s var(--ease);
+  display: block;
+}
+.gallery-item:hover { transform: scale(1.02); }
+.gallery-item:hover .gi-overlay { opacity: 1; }
+.gi-img {
+  width: 100%; display: block;
+  background: var(--off2);
+}
+/* Placeholder colored blocks — swap with real <img> tags */
+.gi-img.tall   { height: 360px; }
+.gi-img.medium { height: 260px; }
+.gi-img.short  { height: 200px; }
+.gi-img.wide   { height: 220px; }
+
+.gi-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 50%);
+  opacity: 0; transition: opacity .3s var(--ease);
+  display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 20px;
+}
+.gi-title { font-size: 14px; font-weight: 600; color: #fff; letter-spacing: -.01em; margin-bottom: 3px; }
+.gi-cat { font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.65); }
+
+/* Category colors */
+.cat-birds    { background: linear-gradient(145deg, #c8d8c0, #6e9060); }
+.cat-landscape{ background: linear-gradient(145deg, #b8cfe8, #5a82b0); }
+.cat-wildlife  { background: linear-gradient(145deg, #e0d4b8, #a88040); }
+.cat-golden    { background: linear-gradient(145deg, #f0ddb0, #c09040); }
+.cat-flight    { background: linear-gradient(145deg, #d0c8e4, #7870a8); }
+.cat-nature    { background: linear-gradient(145deg, #c4dac8, #5a8a6a); }
+
+/* Bird SVG overlays on placeholder cards */
+.gi-bird { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: .2; pointer-events: none; }
+
+/* ── STATS BAND ── */
+.stats-band {
+  background: var(--off); padding: 72px 24px;
+  text-align: center;
+}
+.stats-inner { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+.stat-block {}
+.stat-n { font-size: 48px; font-weight: 700; letter-spacing: -.04em; color: var(--ink); line-height: 1; }
+.stat-n em { color: var(--blue); font-style: normal; font-size: .6em; }
+.stat-l { font-size: 13px; font-weight: 400; color: var(--ink3); margin-top: 6px; letter-spacing: -.01em; }
+
+/* ── COMING SOON NOTE ── */
+.coming-note {
+  background: rgba(0,113,227,.05); border: 1px solid rgba(0,113,227,.15);
+  border-radius: 14px; padding: 24px 28px;
+  max-width: 680px; margin: 0 auto 48px;
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.coming-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.coming-text { font-size: 14px; font-weight: 400; color: var(--ink3); line-height: 1.6; letter-spacing: -.01em; }
+.coming-text strong { color: var(--blue); font-weight: 600; }
+
+@media (max-width: 768px) {
+  .gallery-wrap { columns: 2; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .gallery-wrap { columns: 1; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+}
 </style>
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 <nav>
-  <a href="/" class="nav-logo">studio<span>r</span>.cc</a>
+  <a href="/" class="nav-logo">studior<em>.cc</em></a>
   <ul class="nav-links">
     <li><a href="/resume">Resume</a></li>
-    <li><a href="/photography" class="active">Photography</a></li>
+    <li><a href="/photography">Photography</a></li>
     <li><a href="/tools">Tools</a></li>
   </ul>
+  <a href="mailto:rama_bhupatiraju@yahoo.com" class="nav-cta">Get in touch ↗</a>
 </nav>
+
+<!-- PAGE HERO -->
 <div class="page-hero">
-  <div class="page-hero-bg">LENS</div>
-  <div class="page-label" style="color:var(--teal)">02 — Photography</div>
-  <h1 style="color:var(--white)">Birds &amp;<em style="color:var(--teal)">Landscapes</em></h1>
-  <p>Patience, stillness, and light. Capturing fleeting moments in the wild — from the flash of a kingfisher to the silence of golden hour.</p>
+  <div class="page-eyebrow">02 / Photography</div>
+  <h1 class="page-h1">Birds &amp; <em>Landscapes</em></h1>
+  <p class="page-sub">Patience, stillness, and light. A visual journal from the field — birding, wildlife, and golden hour landscapes.</p>
 </div>
-<div class="coming-soon reveal">
-  <div class="coming-label">Portfolio</div>
-  <h2>Coming Soon</h2>
-  <p>The full gallery is being curated. Check back soon for birding and landscape photography from the field.</p>
-  <a href="/" class="btn btn-teal">Back to Home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+
+<!-- FILTER -->
+<div class="filter-bar reveal">
+  <button class="filter-btn active" data-cat="all">All</button>
+  <button class="filter-btn" data-cat="birds">Birds</button>
+  <button class="filter-btn" data-cat="landscape">Landscape</button>
+  <button class="filter-btn" data-cat="wildlife">Wildlife</button>
+  <button class="filter-btn" data-cat="flight">In Flight</button>
+  <button class="filter-btn" data-cat="golden">Golden Hour</button>
 </div>
-<div class="placeholder-grid">
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><div class="cell-label">Birding</div></div>
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg><div class="cell-label">Landscape</div></div>
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div class="cell-label">Wildlife</div></div>
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div class="cell-label">Nature</div></div>
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg><div class="cell-label">Golden Hour</div></div>
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div class="cell-label">Field Notes</div></div>
+
+<!-- COMING SOON NOTE -->
+<div style="padding: 40px 24px 0; max-width: 1100px; margin: 0 auto;">
+  <div class="coming-note reveal">
+    <div class="coming-icon">📷</div>
+    <div class="coming-text"><strong>Gallery coming soon.</strong> Real photographs are being curated and will replace these placeholders. Each card below is ready to receive an image — swap the colored placeholder with an <code>&lt;img&gt;</code> tag or a CSS background-image.</div>
+  </div>
 </div>
+
+<!-- GALLERY -->
+<div class="gallery-wrap">
+
+  <!-- Col rhythm: tall / short / medium creates natural stagger -->
+  <div class="gallery-item" data-cat="birds">
+    <div class="gi-img tall cat-birds">
+      <svg class="gi-bird" width="100" height="64" viewBox="0 0 100 64"><path d="M5 48C22 28 38 20 50 28C62 20 78 28 95 48" stroke="rgba(255,255,255,.5)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="50" cy="27" r="4" fill="rgba(255,255,255,.5)"/></svg>
+    </div>
+    <div class="gi-overlay"><div class="gi-title">Great Blue Heron</div><div class="gi-cat">Birds</div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="landscape">
+    <div class="gi-img short cat-landscape">
+      <svg class="gi-bird" width="90" height="60" viewBox="0 0 90 60"><path d="M0 60L20 24L36 42L50 10L64 30L90 60Z" fill="rgba(255,255,255,.1)"/><circle cx="58" cy="9" r="8" fill="rgba(255,255,255,.12)"/></svg>
+    </div>
+    <div class="gi-overlay"><div class="gi-title">Mountain Range, Dusk</div><div class="gi-cat">Landscape</div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="flight">
+    <div class="gi-img medium cat-flight">
+      <svg class="gi-bird" width="110" height="48" viewBox="0 0 110 48"><path d="M4 36C20 18 34 12 44 20" stroke="rgba(255,255,255,.45)" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M44 20C54 12 68 18 84 36" stroke="rgba(255,255,255,.65)" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="44" cy="19" r="3.5" fill="rgba(255,255,255,.6)"/></svg>
+    </div>
+    <div class="gi-overlay"><div class="gi-title">Osprey in Flight</div><div class="gi-cat">In Flight</div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="golden">
+    <div class="gi-img tall cat-golden">
+      <svg class="gi-bird" width="80" height="52" viewBox="0 0 80 52"><path d="M4 40C16 26 27 22 35 28C43 22 54 26 72 40" stroke="rgba(255,255,255,.5)" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="35" cy="27" r="3" fill="rgba(255,255,255,.6)"/></svg>
+    </div>
+    <div class="gi-overlay"><div class="gi-title">Golden Hour, Shoreline</div><div class="gi-cat">Golden Hour</div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="birds">
+    <div class="gi-img medium cat-birds">
+      <svg class="gi-bird" width="90" height="56" viewBox="0 0 90 56"><path d="M5 44C18 26 30 20 42 26C54 20 66 26 85 44" stroke="rgba(255,255,255,.5)" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="42" cy="25" r="3.5" fill="rgba(255,255,255,.6)"/></svg>
+    </div>
+    <div class="gi-overlay"><div class="gi-title">Kingfisher Perched</div><div class="gi-cat">Birds</div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="wildlife">
+    <div class="gi-img short cat-wildlife">
+    </div>
+    <div class="gi-overlay"><div class="gi-title">White-tailed Deer</div><div class="gi-cat">Wildlife</div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="landscape">
+    <div class="gi-img tall cat-nature">
+      <svg class="gi-bird" width="70" height="44" viewBox="0 0 70 44"><path d="M4 34C14 20 22 16 30 22C38 16 48 20 66 34" stroke="rgba(255,255,255,.45)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <div class="gi-overlay"><div class="gi-title">Reed Beds at Sunset</div><div class="gi-cat">Landscape</div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="flight">
+    <div class="gi-img medium cat-flight">
+      <svg class="gi-bird" width="120" height="40" viewBox="0 0 120 40">
+        <path d="M2 30C14 18 22 14 30 20C38 14 46 18 58 30" stroke="rgba(255,255,255,.55)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M60 22C72 10 82 14 96 26" stroke="rgba(255,255,255,.4)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <path d="M72 28C80 20 88 22 100 32" stroke="rgba(255,255,255,.25)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="gi-overlay"><div class="gi-title">Flock, Dawn Migration</div><div class="gi-cat">In Flight</div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="birds">
+    <div class="gi-img short cat-birds">
+      <svg class="gi-bird" width="80" height="48" viewBox="0 0 80 48"><path d="M5 38C18 22 28 18 38 24C48 18 60 22 75 38" stroke="rgba(255,255,255,.5)" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <div class="gi-overlay"><div class="gi-title">Egret at Rest</div><div class="gi-cat">Birds</div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="golden">
+    <div class="gi-img tall cat-golden">
+      <svg class="gi-bird" width="90" height="52" viewBox="0 0 90 52"><path d="M5 40C20 24 32 18 42 26C52 18 66 24 85 40" stroke="rgba(255,255,255,.5)" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="42" cy="25" r="3" fill="rgba(255,255,255,.6)"/></svg>
+    </div>
+    <div class="gi-overlay"><div class="gi-title">Hawk, Warm Light</div><div class="gi-cat">Golden Hour</div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="wildlife">
+    <div class="gi-img medium cat-wildlife">
+    </div>
+    <div class="gi-overlay"><div class="gi-title">Red Fox, Early Morning</div><div class="gi-cat">Wildlife</div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="landscape">
+    <div class="gi-img short cat-landscape">
+      <svg class="gi-bird" width="80" height="50" viewBox="0 0 80 50"><path d="M0 50L18 20L30 36L42 8L56 28L80 50Z" fill="rgba(255,255,255,.08)"/></svg>
+    </div>
+    <div class="gi-overlay"><div class="gi-title">Pacific Coastline</div><div class="gi-cat">Landscape</div></div>
+  </div>
+
+</div>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-block reveal"><div class="stat-n">200<em>+</em></div><div class="stat-l">Species Observed</div></div>
+    <div class="stat-block reveal delay-1"><div class="stat-n">12</div><div class="stat-l">Years in the Field</div></div>
+    <div class="stat-block reveal delay-2"><div class="stat-n">5K<em>+</em></div><div class="stat-l">Photographs Taken</div></div>
+    <div class="stat-block reveal delay-3"><div class="stat-n">CA</div><div class="stat-l">Primary Location</div></div>
+  </div>
+</div>
+
 <footer>
-  <div class="footer-logo">studio<span>r</span>.cc</div>
-  <p>© 2025 Raju Bhupatiraju. All rights reserved.</p>
-  <div class="footer-version">v2.0</div>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div><div class="f-brand-name">studior<em>.cc</em></div><div class="f-brand-sub">Raju Bhupatiraju · San Jose, CA</div></div>
+      <div><div class="f-col-head">Pages</div><div class="f-col-links"><a href="/resume">Resume</a><a href="/photography">Photography</a><a href="/tools">Tools</a></div></div>
+      <div><div class="f-col-head">Connect</div><div class="f-col-links"><a href="https://linkedin.com/in/bhupatiraju/" target="_blank">LinkedIn</a><a href="https://github.com/tinkeran" target="_blank">GitHub</a><a href="mailto:rama_bhupatiraju@yahoo.com">Email</a></div></div>
+    </div>
+    <div class="footer-bottom"><span class="f-copy">© 2025 Raju Bhupatiraju. All rights reserved.</span><span class="f-ver">v2.0</span></div>
+  </div>
 </footer>
 <script src="/assets/main.js"></script>
+<script>
+// ── PHOTO FILTER ──
+const btns = document.querySelectorAll('.filter-btn');
+const items = document.querySelectorAll('.gallery-item');
+btns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    items.forEach(item => {
+      const show = cat === 'all' || item.dataset.cat === cat;
+      item.style.opacity = show ? '1' : '0.2';
+      item.style.transform = show ? '' : 'scale(0.97)';
+      item.style.transition = 'opacity .3s, transform .3s';
+    });
+  });
+});
+</script>
 </body>
 </html>
