@@ -7,19 +7,41 @@
 <meta name="description" content="Birding and landscape photography portfolio by Raju Bhupatiraju.">
 <link rel="stylesheet" href="/assets/style.css">
 <style>
-  .coming-soon { min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; position: relative; overflow: hidden; }
-  .coming-soon::before { content: 'SOON'; position: absolute; font-family: var(--font-display); font-size: clamp(160px,25vw,360px); color: transparent; -webkit-text-stroke: 1px rgba(26,201,168,0.06); user-select: none; pointer-events: none; }
-  .coming-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-  .coming-label::before, .coming-label::after { content: ''; width: 24px; height: 1px; background: var(--teal); display: block; }
-  .coming-soon h2 { font-family: var(--font-display); font-size: clamp(48px,6vw,80px); color: var(--white); line-height: 1; margin-bottom: 20px; }
-  .coming-soon p { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 440px; font-weight: 300; margin-bottom: 40px; }
-  .placeholder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 0 80px 80px; }
-  .placeholder-cell { aspect-ratio: 4/3; background: var(--grey); border: 1px solid rgba(245,242,236,0.05); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: border-color .3s; }
-  .placeholder-cell:hover { border-color: rgba(26,201,168,0.3); }
-  .placeholder-cell::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,201,168,0.04), transparent); }
-  .placeholder-cell svg { opacity: .12; width: 48px; height: 48px; color: var(--teal); }
-  .placeholder-cell .cell-label { position: absolute; bottom: 12px; left: 12px; font-family: var(--font-mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: rgba(245,242,236,0.2); }
-  @media (max-width: 768px) { .placeholder-grid { grid-template-columns: 1fr 1fr; padding: 0 24px 48px; } }
+  /* ── GALLERY GRID ── */
+  .gallery-header { padding: 0 80px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .gallery-count { font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; color: var(--muted); }
+  .gallery-link { font-family: var(--font-mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--teal); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: opacity .2s; }
+  .gallery-link:hover { opacity: .7; }
+  .gallery-link svg { width: 12px; height: 12px; }
+
+  /* Masonry via CSS columns */
+  .masonry { columns: 3; column-gap: 4px; padding: 0 80px 80px; }
+  .masonry-item { break-inside: avoid; margin-bottom: 4px; position: relative; overflow: hidden; cursor: none; display: block; }
+  .masonry-item img { width: 100%; display: block; transition: transform .5s ease, filter .4s ease; filter: brightness(.92); }
+  .masonry-item:hover img { transform: scale(1.03); filter: brightness(1); }
+  .masonry-item .item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,.7) 0%, transparent 50%); opacity: 0; transition: opacity .3s; display: flex; align-items: flex-end; padding: 16px; }
+  .masonry-item:hover .item-overlay { opacity: 1; }
+  .item-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: rgba(245,242,236,.7); }
+
+  /* placeholder cells (shown before real images added) */
+  .masonry-placeholder { break-inside: avoid; margin-bottom: 4px; background: var(--grey); border: 1px solid rgba(245,242,236,.05); display: flex; align-items: center; justify-content: center; aspect-ratio: 4/3; }
+  .masonry-placeholder svg { opacity: .1; width: 40px; height: 40px; color: var(--teal); }
+
+  /* ── LIGHTBOX ── */
+  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.96); z-index: 1000; display: none; align-items: center; justify-content: center; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; box-shadow: 0 0 80px rgba(0,0,0,.8); }
+  .lb-close { position: absolute; top: 24px; right: 32px; font-family: var(--font-mono); font-size: 13px; letter-spacing: .15em; color: rgba(245,242,236,.4); cursor: pointer; transition: color .2s; background: none; border: none; }
+  .lb-close:hover { color: var(--white); }
+  .lb-prev, .lb-next { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; color: rgba(245,242,236,.3); font-size: 32px; cursor: pointer; padding: 16px; transition: color .2s; line-height: 1; }
+  .lb-prev:hover, .lb-next:hover { color: var(--white); }
+  .lb-prev { left: 16px; }
+  .lb-next { right: 16px; }
+  .lb-caption { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: rgba(245,242,236,.3); white-space: nowrap; }
+  .lb-counter { position: absolute; top: 28px; left: 50%; transform: translateX(-50%); font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; color: rgba(245,242,236,.3); }
+
+  @media (max-width: 900px) { .masonry { columns: 2; padding: 0 24px 48px; } .gallery-header { padding: 0 24px 32px; } }
+  @media (max-width: 540px) { .masonry { columns: 1; } }
 </style>
 </head>
 <body>
@@ -33,31 +55,93 @@
     <li><a href="/tools">Tools</a></li>
   </ul>
 </nav>
+
 <div class="page-hero">
   <div class="page-hero-bg">LENS</div>
   <div class="page-label" style="color:var(--teal)">02 — Photography</div>
   <h1 style="color:var(--white)">Birds &amp;<em style="color:var(--teal)">Landscapes</em></h1>
   <p>Patience, stillness, and light. Capturing fleeting moments in the wild — from the flash of a kingfisher to the silence of golden hour.</p>
 </div>
-<div class="coming-soon reveal">
-  <div class="coming-label">Portfolio</div>
-  <h2>Coming Soon</h2>
-  <p>The full gallery is being curated. Check back soon for birding and landscape photography from the field.</p>
-  <a href="/" class="btn btn-teal">Back to Home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+
+<div class="gallery-header reveal">
+  <span class="gallery-count"><!-- e.g. 24 photographs --></span>
+  <a href="https://photos.app.goo.gl/XV6uQaj2vzv6MWF18" target="_blank" class="gallery-link">
+    View full album on Google Photos
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+  </a>
 </div>
-<div class="placeholder-grid">
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><div class="cell-label">Birding</div></div>
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg><div class="cell-label">Landscape</div></div>
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div class="cell-label">Wildlife</div></div>
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div class="cell-label">Nature</div></div>
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg><div class="cell-label">Golden Hour</div></div>
-  <div class="placeholder-cell reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div class="cell-label">Field Notes</div></div>
+
+<!-- ══════════════════════════════════════════════
+     GALLERY — replace placeholder divs with:
+     <div class="masonry-item" data-label="Label">
+       <img src="YOUR_LH3_URL_HERE" alt="description" loading="lazy">
+       <div class="item-overlay"><span class="item-label">Label</span></div>
+     </div>
+     ══════════════════════════════════════════════ -->
+<div class="masonry" id="gallery">
+
+  <!-- PLACEHOLDER SLOTS — replace with real images -->
+  <div class="masonry-placeholder reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+  <div class="masonry-placeholder reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+  <div class="masonry-placeholder reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+  <div class="masonry-placeholder reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+  <div class="masonry-placeholder reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+  <div class="masonry-placeholder reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+
 </div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">ESC / CLOSE</button>
+  <button class="lb-prev" id="lbPrev">&#8592;</button>
+  <button class="lb-next" id="lbNext">&#8594;</button>
+  <img src="" alt="" id="lbImg">
+  <div class="lb-caption" id="lbCaption"></div>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
 <footer>
   <div class="footer-logo">studio<span>r</span>.cc</div>
   <p>© 2025 Raju Bhupatiraju. All rights reserved.</p>
   <div class="footer-version">v2.0</div>
 </footer>
+
 <script src="/assets/main.js"></script>
+<script>
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCaption = document.getElementById('lbCaption');
+  const lbCounter = document.getElementById('lbCounter');
+  const items = () => [...document.querySelectorAll('.masonry-item')];
+  let current = 0;
+
+  function openLb(idx) {
+    const all = items();
+    if (!all.length) return;
+    current = idx;
+    const item = all[current];
+    lbImg.src = item.querySelector('img').src;
+    lbCaption.textContent = item.dataset.label || '';
+    lbCounter.textContent = (current + 1) + ' / ' + all.length;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function moveLb(dir) { openLb((current + dir + items().length) % items().length); }
+
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', () => moveLb(-1));
+  document.getElementById('lbNext').addEventListener('click', () => moveLb(1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') moveLb(-1);
+    if (e.key === 'ArrowRight') moveLb(1);
+  });
+
+  items().forEach((item, i) => item.addEventListener('click', () => openLb(i)));
+</script>
 </body>
 </html>
