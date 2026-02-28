@@ -56,6 +56,9 @@ footer p { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em;
 .btn-red { color: var(--red); }
 .btn-teal { color: var(--teal); }
 .btn-gold { color: var(--gold); }
+.btn-red::before { background: var(--red); }
+.btn-teal::before { background: var(--teal); }
+.btn-gold::before { background: var(--gold); }
 
 /* ── PAGE HERO (inner pages) ── */
 .page-hero { padding: 160px 80px 80px; border-bottom: 1px solid rgba(245,242,236,0.06); position: relative; overflow: hidden; }
