@@ -27,6 +27,14 @@
   .masonry-placeholder { break-inside: avoid; margin-bottom: 4px; background: var(--grey); border: 1px solid rgba(245,242,236,.05); display: flex; align-items: center; justify-content: center; aspect-ratio: 4/3; }
   .masonry-placeholder svg { opacity: .1; width: 40px; height: 40px; color: var(--teal); }
 
+  /* ── CATEGORY FILTERS ── */
+  .filter-bar { padding: 0 80px 32px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .filter-btn { font-family: var(--font-mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; padding: 6px 16px; border: 1px solid rgba(245,242,236,.12); background: transparent; color: var(--muted); cursor: pointer; border-radius: 2px; transition: all .2s; }
+  .filter-btn:hover { border-color: var(--teal); color: var(--teal); }
+  .filter-btn.active { background: var(--teal); border-color: var(--teal); color: var(--black); }
+  .masonry-item.hidden { display: none; }
+  @media (max-width: 900px) { .filter-bar { padding: 0 24px 24px; } }
+
   /* ── LIGHTBOX ── */
   .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.96); z-index: 1000; display: none; align-items: center; justify-content: center; }
   .lightbox.open { display: flex; }
@@ -64,11 +72,17 @@
 </div>
 
 <div class="gallery-header reveal">
-  <span class="gallery-count">9 photographs</span>
+  <span class="gallery-count" id="galleryCount">27 photographs</span>
   <a href="https://photos.app.goo.gl/XV6uQaj2vzv6MWF18" target="_blank" class="gallery-link">
     View full album on Google Photos
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
   </a>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="Birds">Birds</button>
+  <button class="filter-btn" data-filter="Sparrows">Sparrows</button>
 </div>
 
 <!-- ══════════════════════════════════════════════
@@ -117,6 +131,26 @@
     <img src="https://lh3.googleusercontent.com/pw/AP1GczPnDa3JCy-6zB_cLYEFP_Gky2OR5MpPN4JY1JRUW-1jpY_FJDSq4YndcYW263u1WmaLV1i3Fi6MJs5jTrWQGvaPnXgAYs5rrdntqK3RtV9Wdn8rPMXufg9UpXagARXY-LWMJvVbFzuuQ4wWs7I2E2YNVg=w1500-h1400-s-no-gm?authuser=0" alt="Bird photography" loading="lazy">
     <div class="item-overlay"><span class="item-label">Birds</span></div>
   </div>
+
+  <!-- SPARROWS -->
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczOlQybCpTrgJDmllmFaOxpZ5ad-eAWSKRbLMHA64gkmg9LYWYfE_vdoiA=w2017-h1347-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczN-m6mM_CP9NaxSljA0Ftj-hBBZinZeP-cC40jUtrVntbkKtzSBkm9TwQ=w2215-h1483-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczO3WlDXuv9bb8_Ran-23Jl3UTOmWpXZCob0Qro2kOJtcxpSwyUreveb7w=w2507-h1673-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczNNaAKTKPrkAg5jMyzxvT5HEMPUnK_nJWKltYldSni8xEHF_VRc7Nq69A=w2229-h1490-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczMypf2KRVs7xOR41JyS8jBC-IPV6xl56vmaRyp7vWxn8yCAvVptws8CSQ=w2560-h1706-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczPj4bPjU1ISGpMxN12jbYCZmbJX3zAaEWpy-NXHkNZPRxvqLedLpJp-KA=w2542-h1706-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczPEq0tt39SFt4YoJPrP1wZYUHEaE66ahsD8KDjKTT5RxXqQSaxker6jyw=w1074-h1612-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczMiUupOzQk9NpB-oDGE44Zwxfk2Tr-pcn4EnQXdd8hxQhh2-2lqfnkUwg=w2195-h1463-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczNOwH-N7xsW8_0x-npHeXZNCVUdDWuAqpk_cNovOYKWgqsEBOENcMkCOQ=w1126-h751-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczPNMwmZeJx4LByGKO8JgIe8fegrHdFQ-mOsXhyyV9GQh3llF33ObwQwbQ=w2558-h1706-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczNiZeDclt4cjvxfh-GHYQOxm8eq03EP3xUUN8yPCnhAMuAdXH9LTU2MBw=w2550-h1706-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczONiwYU-O5bToDRaVy8A2YJpXnhW4E6WRyrsnMtPTvCKRksfzH-P5StAg=w2500-h1667-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczM_od5kCzvzrn2hRXwpcdPDI7mOMFtV-uFEsV3OmH_glGyT_W0JuQM7Hw=w2560-h1706-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczOImDtYK2nYDSV9r8c_8tgYBbzom8tiaLn5nKKJAeGrvfSk1j_2PFD4eQ=w2558-h1706-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczNE0jCKoaDhhnXVswLc2LLj_lz8f0RQEzbZsu5dLneip_HxbDz56MzGfw=w2168-h1549-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczOn5IkOVs1Q7cDrevKrsh1K_zqS1dDepe335d5lzirKnuPBTC6-LaDxGQ=w2560-h1706-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczNVeEJJPjQpuRk1uU_UeEw4Zs-T0CG8eLcJWsJJMcpn9Gx3HelilZfeKQ=w2388-h1706-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
+  <div class="masonry-item reveal" data-label="Sparrows"><img src="https://photos.fife.usercontent.google.com/pw/AP1GczP6GBs-YdskoQZPwPcwJxjQT_6CC6EEzD9e_bYHwZYn2DhYiREvx8kgXw=w2388-h1706-s-no-gm?authuser=0" alt="Sparrow" loading="lazy"><div class="item-overlay"><span class="item-label">Sparrows</span></div></div>
 
 </div>
 
@@ -172,6 +206,25 @@
   });
 
   items().forEach((item, i) => item.addEventListener('click', () => openLb(i)));
+
+  // Category filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const countEl = document.getElementById('galleryCount');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      const all = document.querySelectorAll('.masonry-item');
+      let visible = 0;
+      all.forEach(item => {
+        const match = filter === 'all' || item.dataset.label === filter;
+        item.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+      countEl.textContent = visible + ' photograph' + (visible !== 1 ? 's' : '');
+    });
+  });
 </script>
 </body>
 </html>
