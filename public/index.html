@@ -4,311 +4,236 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Raju Bhupatiraju — studior.cc</title>
-<meta name="description" content="Technology executive, bird photographer, and builder of web tools. 25+ years leading digital transformation.">
+<meta name="description" content="Business Technology Leader, Bird Photographer, and Builder of Web Tools.">
 <link rel="stylesheet" href="/assets/style.css">
 <style>
+  /* ── HERO SLIDESHOW ── */
+  .hero { height: 100vh; position: relative; overflow: hidden; }
+  .slide { position: absolute; inset: 0; display: flex; align-items: center; opacity: 0; transition: opacity .8s ease; pointer-events: none; }
+  .slide.active { opacity: 1; pointer-events: auto; }
 
-/* ── HERO ── */
-.hero {
-  height: 100vh; min-height: 700px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center; padding: 52px 24px 0;
-  position: relative; overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 45%, rgba(0,113,227,0.05) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-eyebrow {
-  font-size: 13px; font-weight: 500; letter-spacing: .06em;
-  text-transform: uppercase; color: var(--blue); margin-bottom: 24px;
-  opacity: 0; animation: fadeDown .6s .1s var(--ease) forwards;
-}
-.hero-h1 {
-  font-size: clamp(48px, 7vw, 96px); font-weight: 800;
-  letter-spacing: -.04em; line-height: 1.0; color: var(--ink); margin-bottom: 8px;
-  opacity: 0; animation: fadeDown .7s .2s var(--ease) forwards;
-}
-.hero-h1-sub {
-  font-size: clamp(28px, 4vw, 52px); font-weight: 200;
-  letter-spacing: -.03em; color: var(--ink3); margin-bottom: 28px;
-  opacity: 0; animation: fadeDown .7s .3s var(--ease) forwards;
-}
-.hero-sub {
-  font-size: clamp(16px, 1.8vw, 21px); font-weight: 300;
-  color: var(--ink3); line-height: 1.6; letter-spacing: -.01em;
-  max-width: 540px; margin: 0 auto 44px;
-  opacity: 0; animation: fadeDown .7s .4s var(--ease) forwards;
-}
-.hero-actions {
-  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
-  margin-bottom: 80px;
-  opacity: 0; animation: fadeDown .6s .5s var(--ease) forwards;
-}
+  /* Slide content shared */
+  .slide-tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--red); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .slide-tag::before { content: ''; display: block; width: 32px; height: 1px; background: currentColor; }
+  .slide h1 { font-family: var(--font-display); font-size: clamp(64px,8vw,120px); line-height: .95; letter-spacing: .02em; color: var(--white); margin-bottom: 32px; }
+  .slide h1 em { font-style: normal; display: block; }
+  .slide p { font-size: 16px; line-height: 1.7; color: var(--muted); max-width: 480px; margin-bottom: 48px; font-weight: 300; }
 
-/* Photo strip */
-.hero-strip {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  display: flex; gap: 12px; padding: 0 60px;
-  justify-content: center; align-items: flex-end;
-  opacity: 0; animation: fadeUp .9s .7s var(--ease) forwards;
-}
-.strip-card {
-  border-radius: 16px 16px 0 0; overflow: hidden; flex-shrink: 0;
-  position: relative; transition: transform .4s var(--ease);
-}
-.strip-card:hover { transform: translateY(-10px); }
-.strip-card:nth-child(1) { width: 160px; height: 200px; background: linear-gradient(160deg,#d4e6cc,#8aac7e); }
-.strip-card:nth-child(2) { width: 210px; height: 260px; background: linear-gradient(160deg,#b8cfe8,#6a8cb8); }
-.strip-card:nth-child(3) { width: 270px; height: 320px; background: linear-gradient(160deg,#e0d8c8,#b09060); }
-.strip-card:nth-child(4) { width: 210px; height: 260px; background: linear-gradient(160deg,#ccc8e0,#8880b4); }
-.strip-card:nth-child(5) { width: 160px; height: 200px; background: linear-gradient(160deg,#c4dac8,#6a9870); }
-.strip-card-label {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 40px 14px 14px;
-  background: linear-gradient(to top, rgba(0,0,0,.35), transparent);
-  font-size: 11px; font-weight: 600; letter-spacing: .05em;
-  text-transform: uppercase; color: rgba(255,255,255,.8);
-}
-.strip-card svg { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); opacity: .3; }
+  /* Entrance anims on active slide */
+  .slide.active .slide-tag { animation: fadeUp .6s .2s both; }
+  .slide.active h1 { animation: fadeUp .7s .35s both; }
+  .slide.active p { animation: fadeUp .7s .5s both; }
+  .slide.active .btn { animation: fadeUp .6s .65s both; }
 
-/* ── THREE FEATURE CARDS ── */
-.features { background: var(--white); padding: 0 24px 100px; }
-.features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; max-width: 980px; margin: 0 auto; }
-.feat-card {
-  background: var(--off); border-radius: 20px; padding: 44px 36px;
-  text-decoration: none; color: inherit; display: flex; flex-direction: column;
-  transition: transform .3s var(--ease), box-shadow .3s;
-}
-.feat-card:hover { transform: scale(1.02); box-shadow: 0 20px 60px rgba(0,0,0,.09); }
-.feat-num { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink4); margin-bottom: 36px; }
-.feat-icon { margin-bottom: 18px; }
-.feat-title { font-size: 24px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin-bottom: 10px; line-height: 1.15; }
-.feat-desc { font-size: 15px; font-weight: 400; line-height: 1.65; color: var(--ink3); letter-spacing: -.01em; flex: 1; }
-.feat-link {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: 15px; font-weight: 500; color: var(--blue);
-  margin-top: 24px; text-decoration: none;
-  opacity: 0; transform: translateY(6px); transition: opacity .25s, transform .25s;
-}
-.feat-card:hover .feat-link { opacity: 1; transform: translateY(0); }
-.feat-link svg { width: 14px; height: 14px; transition: transform .2s; }
-.feat-card:hover .feat-link svg { transform: translateX(3px); }
+  /* ── SLIDE 1: RESUME ── */
+  .slide-resume { background: var(--black); padding: 0 48px; }
+  .slide-resume .bg-text { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: var(--font-display); font-size: clamp(180px,22vw,320px); color: transparent; -webkit-text-stroke: 1px rgba(245,242,236,0.05); line-height: 1; user-select: none; pointer-events: none; white-space: nowrap; }
+  .slide-resume .content { max-width: 700px; position: relative; z-index: 2; padding-left: 80px; }
+  .slide-resume .slide-tag { color: var(--red); }
+  .slide-resume h1 em { color: var(--gold); }
 
-/* ── ABOUT DARK BAND ── */
-.about-band {
-  background: var(--ink); padding: 100px 24px;
-  position: relative; overflow: hidden;
-}
-.about-band::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 55% 80% at 80% 50%, rgba(0,113,227,.12) 0%, transparent 65%);
-  pointer-events: none;
-}
-.about-inner { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.ab-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px; }
-.ab-h2 { font-size: clamp(30px,4vw,48px); font-weight: 700; letter-spacing: -.03em; color: #fff; line-height: 1.1; margin-bottom: 22px; }
-.ab-body { font-size: 17px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,.55); letter-spacing: -.01em; margin-bottom: 36px; }
-.ab-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.ab-stat-n { font-size: 40px; font-weight: 700; color: #fff; letter-spacing: -.03em; line-height: 1; }
-.ab-stat-n em { color: var(--blue); font-style: normal; font-size: .6em; }
-.ab-stat-l { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.4); margin-top: 4px; }
-.ab-skills {}
-.ab-skill { padding: 17px 0; border-bottom: 1px solid rgba(255,255,255,.07); display: flex; justify-content: space-between; align-items: center; transition: padding-left .25s; }
-.ab-skill:hover { padding-left: 6px; }
-.ab-skill:last-child { border-bottom: none; }
-.ab-skill-name { font-size: 15px; font-weight: 400; color: rgba(255,255,255,.65); letter-spacing: -.01em; }
-.ab-skill-cat { font-size: 11px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: rgba(255,255,255,.22); }
+  /* ── SLIDE 2: PHOTOGRAPHY ── */
+  .slide-photo { background: #000; }
+  .slide-photo .photo-grid { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 3px; opacity: .5; }
+  .photo-cell { background: var(--grey2); overflow: hidden; position: relative; }
+  .photo-cell::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,201,168,0.12) 0%, rgba(10,10,10,0.45) 100%); }
+  .photo-cell:nth-child(1) { background: linear-gradient(135deg, #1a2a1a, #0d1a0d); }
+  .photo-cell:nth-child(2) { background: linear-gradient(135deg, #0d1f1a, #051210); grid-row: span 2; }
+  .photo-cell:nth-child(3) { background: linear-gradient(135deg, #1a1a0d, #0d120d); }
+  .photo-cell:nth-child(4) { background: linear-gradient(135deg, #0d1a14, #081510); }
+  .photo-cell:nth-child(5) { background: linear-gradient(135deg, #101a0d, #0a120a); }
+  .photo-cell svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .25; }
+  .slide-photo .overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,10,10,0.92) 40%, rgba(10,10,10,0.15) 100%); z-index: 1; }
+  .slide-photo .content { position: relative; z-index: 2; padding-left: 80px; max-width: 580px; }
+  .slide-photo .slide-tag { color: var(--teal); }
+  .slide-photo h1 em { color: var(--teal); }
 
-/* ── EXPERIENCE ── */
-.exp-section { background: var(--off); padding: 0 24px 100px; }
-.exp-inner { max-width: 980px; margin: 0 auto; }
-.exp-head { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 32px; }
-.exp-h2 { font-size: clamp(26px,3.5vw,40px); font-weight: 700; letter-spacing: -.03em; color: var(--ink); }
-.exp-more { font-size: 15px; font-weight: 500; color: var(--blue); text-decoration: none; display: flex; align-items: center; gap: 4px; }
-.exp-more svg { width: 14px; height: 14px; transition: transform .2s; }
-.exp-more:hover svg { transform: translateX(3px); }
-.exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.exp-card {
-  background: var(--white); border-radius: 16px; padding: 32px 28px;
-  transition: transform .3s var(--ease), box-shadow .3s;
-}
-.exp-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
-.ec-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
-.ec-year { font-size: 12px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--ink4); }
-.ec-badge { font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--blue); background: rgba(0,113,227,.08); padding: 4px 10px; border-radius: 980px; }
-.ec-co { font-size: 26px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin-bottom: 4px; }
-.ec-role { font-size: 15px; font-weight: 400; color: var(--ink3); letter-spacing: -.01em; margin-bottom: 14px; }
-.ec-desc { font-size: 14px; font-weight: 400; line-height: 1.7; color: var(--ink3); }
-.ec-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
-.ec-pill { font-size: 12px; font-weight: 500; color: var(--ink3); background: var(--off); padding: 5px 12px; border-radius: 980px; }
+  /* ── SLIDE 3: TOOLS ── */
+  .slide-tools { background: var(--black); }
+  .slide-tools .grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(240,180,41,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(240,180,41,0.04) 1px, transparent 1px); background-size: 60px 60px; z-index: 0; }
+  .floating-shapes { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .shape { position: absolute; border: 1px solid rgba(240,180,41,0.15); border-radius: 4px; animation: float linear infinite; }
+  .shape:nth-child(1) { width: 80px; height: 80px; top: 20%; right: 20%; animation-duration: 8s; }
+  .shape:nth-child(2) { width: 140px; height: 140px; top: 50%; right: 35%; animation-duration: 12s; animation-delay: -3s; border-radius: 50%; }
+  .shape:nth-child(3) { width: 50px; height: 50px; top: 70%; right: 15%; animation-duration: 6s; animation-delay: -5s; }
+  .shape:nth-child(4) { width: 200px; height: 200px; top: 10%; right: 50%; animation-duration: 15s; animation-delay: -8s; border-radius: 50%; opacity: .5; }
+  @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(180deg); } }
+  .slide-tools .content { position: relative; z-index: 2; padding-left: 80px; max-width: 640px; }
+  .slide-tools .slide-tag { color: var(--gold); }
+  .slide-tools h1 em { color: var(--gold); }
 
-/* ── GALLERY BAND ── */
-.gallery-band { padding: 80px 0; overflow: hidden; background: var(--white); }
-.gallery-label { text-align: center; margin-bottom: 36px; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink4); }
-.gallery-track { display: flex; gap: 16px; animation: gScroll 28s linear infinite; width: max-content; }
-.gallery-track:hover { animation-play-state: paused; }
-@keyframes gScroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-.g-item {
-  width: 260px; height: 340px; border-radius: 16px; flex-shrink: 0;
-  position: relative; overflow: hidden; transition: transform .3s var(--ease);
-}
-.g-item:hover { transform: scale(1.04); }
-.g-item-lbl { position: absolute; bottom:0; left:0; right:0; padding: 40px 14px 14px; background: linear-gradient(to top,rgba(0,0,0,.4),transparent); font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: rgba(255,255,255,.8); }
-.g-item svg { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); opacity: .25; }
-.g1  { background: linear-gradient(145deg,#c8d8c0,#6e9060); }
-.g2  { background: linear-gradient(145deg,#b8cfe8,#5a82b0); }
-.g3  { background: linear-gradient(145deg,#e8d4b8,#b0804a); }
-.g4  { background: linear-gradient(145deg,#d0c8e0,#7870a8); }
-.g5  { background: linear-gradient(145deg,#c4dac8,#5a8a6a); }
-.g6  { background: linear-gradient(145deg,#d8c4c0,#9a6058); }
-.g7  { background: linear-gradient(145deg,#c0d4d8,#507888); }
-.g8  { background: linear-gradient(145deg,#dcd4c0,#988a60); }
+  /* ── SLIDE NUM ── */
+  .slide-num { position: absolute; right: 48px; bottom: 40px; font-family: var(--font-display); font-size: 180px; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(245,242,236,0.05); z-index: 1; user-select: none; pointer-events: none; }
 
-@media (max-width:768px) {
-  .hero-strip { display:none; }
-  .features-grid { grid-template-columns:1fr; }
-  .about-inner { grid-template-columns:1fr; gap:48px; }
-  .exp-grid { grid-template-columns:1fr; }
-}
+  /* ── CONTROLS ── */
+  .slide-controls { position: absolute; bottom: 48px; left: 80px; z-index: 10; display: flex; align-items: center; gap: 20px; }
+  .slide-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(245,242,236,0.2); cursor: none; transition: all .3s; position: relative; }
+  .slide-dot::after { content: ''; position: absolute; inset: -8px; }
+  .slide-dot.active { background: var(--white); transform: scale(1.5); }
+  .slide-counter { font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; color: rgba(245,242,236,0.3); margin-left: 12px; }
+  .slide-progress { position: absolute; bottom: 0; left: 0; height: 2px; background: var(--red); z-index: 10; animation: progress 5s linear infinite; }
+  @keyframes progress { from { width: 0%; } to { width: 100%; } }
+
+  /* ── SCROLL HINT ── */
+  .scroll-hint { position: absolute; right: 48px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 10; }
+  .scroll-hint span { font-family: var(--font-mono); font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: rgba(245,242,236,0.2); writing-mode: vertical-rl; }
+  .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, rgba(245,242,236,0.2), transparent); animation: scrollDown 2s ease-in-out infinite; }
+  @keyframes scrollDown { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 50.1% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+  /* ── SECTION CARDS ── */
+  .sections-preview { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; background: var(--grey2); }
+  .section-card { background: var(--black); padding: 64px 48px; display: flex; flex-direction: column; gap: 20px; transition: background .3s; cursor: none; position: relative; overflow: hidden; text-decoration: none; color: inherit; }
+  .section-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--card-accent, var(--red)); transform: scaleX(0); transform-origin: left; transition: transform .4s; }
+  .section-card:hover::before { transform: scaleX(1); }
+  .card-num { font-family: var(--font-display); font-size: 72px; color: transparent; -webkit-text-stroke: 1px rgba(245,242,236,0.07); line-height: 1; }
+  .card-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--card-accent, var(--red)); }
+  .section-card h2 { font-family: var(--font-display); font-size: 38px; letter-spacing: .03em; line-height: 1.1; color: var(--white); }
+  .section-card p { font-size: 14px; line-height: 1.75; color: rgba(245,242,236,0.45); font-weight: 300; flex: 1; }
+  .card-arrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; color: var(--card-accent, var(--red)); opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .3s; }
+  .section-card:hover .card-arrow { opacity: 1; transform: translateX(0); }
+  .card-resume { --card-accent: var(--red); }
+  .card-photo { --card-accent: var(--teal); }
+  .card-tools { --card-accent: var(--gold); }
+
+  @media (max-width: 768px) {
+    .slide-resume .content, .slide-photo .content, .slide-tools .content { padding-left: 24px; }
+    .slide-controls { left: 24px; bottom: 32px; }
+    .scroll-hint { display: none; }
+    .sections-preview { grid-template-columns: 1fr; }
+    .slide-num { font-size: 100px; right: 24px; }
+  }
 </style>
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
 <nav>
-  <a href="/" class="nav-logo">studior<em>.cc</em></a>
+  <a href="/" class="nav-logo">studio<span>r</span>.cc</a>
   <ul class="nav-links">
-    <li><a href="/resume">Resume</a></li>
-    <li><a href="/photography">Photography</a></li>
-    <li><a href="/tools">Tools</a></li>
+    <li><a href="/resume" class="nav-link">Resume</a></li>
+    <li><a href="/photography" class="nav-link">Photography</a></li>
+    <li><a href="/tools" class="nav-link">Tools</a></li>
   </ul>
-  <a href="mailto:rama_bhupatiraju@yahoo.com" class="nav-cta">Get in touch ↗</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">Technology Executive · San Jose, CA</div>
-  <h1 class="hero-h1">Raju Bhupatiraju</h1>
-  <div class="hero-h1-sub">Digital Transformation Leader</div>
-  <p class="hero-sub">25+ years modernizing global enterprises — and a lifelong passion for capturing nature through a lens.</p>
-  <div class="hero-actions">
-    <a href="/resume" class="btn-primary">View Resume <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    <a href="/photography" class="btn-secondary">See Photography</a>
+
+  <!-- SLIDE 1: RESUME -->
+  <div class="slide slide-resume active" data-slide="0">
+    <div class="bg-text">LEADER</div>
+    <div class="content">
+      <div class="slide-tag">01 — Resume</div>
+      <h1>Business<em><span style="color:var(--gold)">Technology</span></em>Leader</h1>
+      <p>25+ years driving digital transformation across global enterprises. Building teams, modernizing platforms, and delivering outcomes that last.</p>
+      <a href="/resume" class="btn btn-red">View Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="slide-num">01</div>
   </div>
+
+  <!-- SLIDE 2: PHOTOGRAPHY -->
+  <div class="slide slide-photo" data-slide="1">
+    <div class="photo-grid">
+      <div class="photo-cell"><svg viewBox="0 0 200 200"><path d="M100 60C80 40 40 50 30 80C20 110 40 130 60 120C70 115 80 100 100 90C120 100 130 115 140 120C160 130 180 110 170 80C160 50 120 40 100 60Z" fill="rgba(26,201,168,0.4)"/><circle cx="100" cy="55" r="8" fill="rgba(26,201,168,0.5)"/></svg></div>
+      <div class="photo-cell"><svg viewBox="0 0 200 400"><path d="M100 80L90 120L60 140L90 130L95 180L80 220L100 200L120 220L105 180L110 130L140 140L110 120Z" fill="rgba(26,201,168,0.35)"/><ellipse cx="100" cy="65" rx="14" ry="18" fill="rgba(26,201,168,0.5)"/></svg></div>
+      <div class="photo-cell"><svg viewBox="0 0 200 200"><path d="M50 100C50 60 80 40 110 50C130 56 150 70 160 100C170 130 155 160 130 165C100 170 50 145 50 100Z" fill="rgba(26,201,168,0.3)"/><circle cx="118" cy="62" r="10" fill="rgba(26,201,168,0.5)"/></svg></div>
+      <div class="photo-cell"><svg viewBox="0 0 200 200"><path d="M40 140Q100 40 160 140" stroke="rgba(26,201,168,0.4)" stroke-width="2" fill="none"/><circle cx="100" cy="40" r="6" fill="rgba(26,201,168,0.5)"/></svg></div>
+      <div class="photo-cell"><svg viewBox="0 0 200 200"><path d="M100 50L70 90L30 95L60 120L50 165L100 140L150 165L140 120L170 95L130 90Z" fill="rgba(26,201,168,0.2)"/></svg></div>
+    </div>
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="slide-tag" style="color:var(--teal)">02 — Photography</div>
+      <h1>Birds &<em>Landscapes</em></h1>
+      <p>Patience, stillness, and light. Capturing fleeting moments in the wild — from the flash of a kingfisher to golden hour silence.</p>
+      <a href="/photography" class="btn btn-teal">View Portfolio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="slide-num">02</div>
+  </div>
+
+  <!-- SLIDE 3: TOOLS -->
+  <div class="slide slide-tools" data-slide="2">
+    <div class="grid-bg"></div>
+    <div class="floating-shapes"><div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div></div>
+    <div class="content">
+      <div class="slide-tag" style="color:var(--gold)">03 — Tools</div>
+      <h1>Web-Based<em>Tools</em></h1>
+      <p>Experiments, utilities, and products built for real people. From productivity tools to creative utilities — ideas made tangible.</p>
+      <a href="/tools" class="btn btn-gold">Explore Tools <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="slide-num">03</div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="slide-controls">
+    <div class="slide-dot active" data-target="0"></div>
+    <div class="slide-dot" data-target="1"></div>
+    <div class="slide-dot" data-target="2"></div>
+    <span class="slide-counter" id="counter">01 / 03</span>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+  <div class="slide-progress" id="progressBar"></div>
 
 </section>
 
-<!-- FEATURE CARDS -->
-<div class="features">
-  <div class="section-header reveal">
-    <div class="section-eyebrow">studior.cc</div>
-    <h2 class="section-h2">Work. Photography. <em>Tools.</em></h2>
-    <p class="section-body">A professional portfolio, a nature photography collection, and a growing set of web tools — all in one place.</p>
-  </div>
-  <div class="features-grid">
-    <a href="/resume" class="feat-card reveal delay-1">
-      <div class="feat-num">01 / Resume</div>
-      <div class="feat-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="6" y="4" width="24" height="28" rx="3" fill="rgba(0,113,227,.1)" stroke="rgba(0,113,227,.5)" stroke-width="1.5"/><line x1="11" y1="13" x2="25" y2="13" stroke="rgba(0,113,227,.6)" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="18" x2="25" y2="18" stroke="rgba(0,113,227,.4)" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="23" x2="19" y2="23" stroke="rgba(0,113,227,.3)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="feat-title">Career History</div>
-      <div class="feat-desc">25+ years of enterprise technology leadership spanning ERP, CRM, Supply Chain, and Data platforms across global enterprises.</div>
-      <div class="feat-link">View Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </a>
-    <a href="/photography" class="feat-card reveal delay-2">
-      <div class="feat-num">02 / Photography</div>
-      <div class="feat-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M4 12C4 10 6 8 8 8L12 8L14 5L22 5L24 8L28 8C30 8 32 10 32 12L32 26C32 28 30 30 28 30L8 30C6 30 4 28 4 26Z" fill="rgba(52,199,89,.1)" stroke="rgba(52,199,89,.5)" stroke-width="1.5"/><circle cx="18" cy="19" r="5" stroke="rgba(52,199,89,.6)" stroke-width="1.5" fill="rgba(52,199,89,.08)"/></svg></div>
-      <div class="feat-title">Photography</div>
-      <div class="feat-desc">Birding, landscapes, and wildlife photography. Patience, stillness, and light — capturing nature from the field.</div>
-      <div class="feat-link" style="color:var(--green)">View Portfolio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </a>
-    <a href="/tools" class="feat-card reveal delay-3">
-      <div class="feat-num">03 / Tools</div>
-      <div class="feat-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="4" y="4" width="12" height="12" rx="2.5" fill="rgba(255,159,10,.1)" stroke="rgba(255,159,10,.5)" stroke-width="1.5"/><rect x="20" y="4" width="12" height="12" rx="2.5" fill="rgba(255,159,10,.07)" stroke="rgba(255,159,10,.35)" stroke-width="1.5"/><rect x="4" y="20" width="12" height="12" rx="2.5" fill="rgba(255,159,10,.07)" stroke="rgba(255,159,10,.35)" stroke-width="1.5"/><rect x="20" y="20" width="12" height="12" rx="2.5" fill="rgba(255,159,10,.04)" stroke="rgba(255,159,10,.2)" stroke-width="1.5"/></svg></div>
-      <div class="feat-title">Web Tools</div>
-      <div class="feat-desc">Small bets and useful utilities. RemindMe is live — more tools crafted at the intersection of technology and everyday life.</div>
-      <div class="feat-link" style="color:var(--amber)">Explore Tools <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </a>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<div class="about-band">
-  <div class="about-inner">
-    <div class="reveal">
-      <div class="ab-eyebrow">About</div>
-      <h2 class="ab-h2">Built on 25 years of transformation.</h2>
-      <p class="ab-body">Technology executive proven in modernizing Supply Chain, ERP, CRM, Finance, and Enterprise Data platforms across global enterprises. Recognized for building high-performance teams and delivering measurable outcomes.</p>
-      <div class="ab-stats">
-        <div><div class="ab-stat-n">25<em>+</em></div><div class="ab-stat-l">Years Leadership</div></div>
-        <div><div class="ab-stat-n">6</div><div class="ab-stat-l">Industries</div></div>
-        <div><div class="ab-stat-n">2<em>×</em></div><div class="ab-stat-l">CIO Award</div></div>
-        <div><div class="ab-stat-n" style="font-size:20px;padding-top:10px;color:rgba(255,255,255,.5)">Birder &amp; Photographer</div><div class="ab-stat-l">Nature Enthusiast</div></div>
-      </div>
-    </div>
-    <div class="ab-skills reveal delay-2">
-      <div class="ab-skill"><span class="ab-skill-name">Oracle Fusion Cloud ERP</span><span class="ab-skill-cat">ERP</span></div>
-      <div class="ab-skill"><span class="ab-skill-name">Salesforce · CPQ</span><span class="ab-skill-cat">CRM</span></div>
-      <div class="ab-skill"><span class="ab-skill-name">NetSuite · Boomi · Celigo</span><span class="ab-skill-cat">Integration</span></div>
-      <div class="ab-skill"><span class="ab-skill-name">PowerBI · dbt · Anaplan</span><span class="ab-skill-cat">Data</span></div>
-      <div class="ab-skill"><span class="ab-skill-name">Quote to Cash · Procure to Pay</span><span class="ab-skill-cat">Process</span></div>
-      <div class="ab-skill"><span class="ab-skill-name">Supply Chain · Revenue Mgmt</span><span class="ab-skill-cat">Operations</span></div>
-      <div class="ab-skill"><span class="ab-skill-name">Agile · SOX / ITGC</span><span class="ab-skill-cat">Governance</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- EXPERIENCE -->
-<div class="exp-section">
-  <div class="section-header reveal"><div class="section-eyebrow">Experience</div><h2 class="section-h2">Selected Career <em>History</em></h2></div>
-  <div class="exp-inner">
-    <div class="exp-head reveal"><h2 class="exp-h2"></h2><a href="/resume" class="exp-more">Full Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-    <div class="exp-grid">
-      <div class="exp-card reveal"><div class="ec-top"><span class="ec-year">Jun 2021 — Present</span><span class="ec-badge">Current</span></div><div class="ec-co">Nextiva</div><div class="ec-role">Senior Director, Business Technology</div><div class="ec-desc">Built engineering teams from ground up. Led back-office consolidation into Oracle Fusion Cloud ERP across the full Campaign to Cash lifecycle.</div><div class="ec-pills"><span class="ec-pill">Oracle Fusion ERP</span><span class="ec-pill">Salesforce</span><span class="ec-pill">CPQ</span></div></div>
-      <div class="exp-card reveal delay-1"><div class="ec-top"><span class="ec-year">Jul 2019 — Jun 2021</span></div><div class="ec-co">Cloudflare</div><div class="ec-role">Business Systems Manager</div><div class="ec-desc">Defined Enterprise Back Office systems strategy. Managed Finance roadmap across Order to Cash, Procure to Pay, and Record to Report.</div><div class="ec-pills"><span class="ec-pill">NetSuite</span><span class="ec-pill">Boomi</span><span class="ec-pill">Blackline</span></div></div>
-      <div class="exp-card reveal delay-1"><div class="ec-top"><span class="ec-year">Apr 2018 — Jul 2019</span></div><div class="ec-co">Guidewire</div><div class="ec-role">Principal Product Manager</div><div class="ec-desc">Led Customer 360 initiative delivering cross-sell visibility and consistent management reporting across the full organization.</div><div class="ec-pills"><span class="ec-pill">Product Vision</span><span class="ec-pill">Customer 360</span></div></div>
-      <div class="exp-card reveal delay-2"><div class="ec-top"><span class="ec-year">Feb 2008 — Apr 2018</span></div><div class="ec-co">Brocade</div><div class="ec-role">Manager, Principal Business Systems Analyst</div><div class="ec-desc">Ten years of transformation. Oracle R12 upgrade, SRA divestiture, Supply Chain overhaul. Two-time CIO Award recipient.</div><div class="ec-pills"><span class="ec-pill">Oracle EBS R12</span><span class="ec-pill">2× CIO Award</span><span class="ec-pill">Supply Chain</span></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- GALLERY -->
-<div class="gallery-band reveal">
-  <div class="gallery-label">Photography — Birds · Landscapes · Wildlife</div>
-  <div style="overflow:hidden">
-    <div class="gallery-track">
-      <div class="g-item g1"><svg width="60" height="38" viewBox="0 0 60 38"><path d="M4 28C14 16 22 12 30 18C38 12 46 16 56 28" stroke="rgba(255,255,255,.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="30" cy="17" r="2.5" fill="rgba(255,255,255,.6)"/></svg><div class="g-item-lbl">Birding</div></div>
-      <div class="g-item g2"><svg width="80" height="56" viewBox="0 0 80 56"><path d="M0 56L22 20L38 38L52 10L66 28L80 56Z" fill="rgba(255,255,255,.1)"/><circle cx="58" cy="9" r="8" fill="rgba(255,255,255,.1)"/></svg><div class="g-item-lbl">Landscape</div></div>
-      <div class="g-item g3"><svg width="70" height="44" viewBox="0 0 70 44"><path d="M5 34C16 20 26 16 35 22C44 16 54 20 65 34" stroke="rgba(255,255,255,.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="35" cy="21" r="2.5" fill="rgba(255,255,255,.6)"/></svg><div class="g-item-lbl">In Flight</div></div>
-      <div class="g-item g4"><svg width="80" height="56" viewBox="0 0 80 56"><path d="M0 56L18 28L32 44L48 14L64 34L80 56Z" fill="rgba(255,255,255,.08)"/></svg><div class="g-item-lbl">Golden Hour</div></div>
-      <div class="g-item g5"><svg width="60" height="38" viewBox="0 0 60 38"><path d="M4 28C14 16 22 12 30 18C38 12 46 16 56 28" stroke="rgba(255,255,255,.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg><div class="g-item-lbl">Wildlife</div></div>
-      <div class="g-item g6"><svg width="70" height="44" viewBox="0 0 70 44"><circle cx="35" cy="20" r="11" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.2)" stroke-width="1"/></svg><div class="g-item-lbl">Nature</div></div>
-      <div class="g-item g7"><svg width="60" height="38" viewBox="0 0 60 38"><path d="M4 28C14 16 22 12 30 18C38 12 46 16 56 28" stroke="rgba(255,255,255,.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="30" cy="17" r="2.5" fill="rgba(255,255,255,.6)"/></svg><div class="g-item-lbl">Birding</div></div>
-      <div class="g-item g8"><svg width="80" height="56" viewBox="0 0 80 56"><path d="M0 56L22 20L38 38L52 10L66 28L80 56Z" fill="rgba(255,255,255,.1)"/></svg><div class="g-item-lbl">Landscape</div></div>
-      <!-- Duplicate set for seamless loop -->
-      <div class="g-item g1"><svg width="60" height="38" viewBox="0 0 60 38"><path d="M4 28C14 16 22 12 30 18C38 12 46 16 56 28" stroke="rgba(255,255,255,.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="30" cy="17" r="2.5" fill="rgba(255,255,255,.6)"/></svg><div class="g-item-lbl">Birding</div></div>
-      <div class="g-item g2"><svg width="80" height="56" viewBox="0 0 80 56"><path d="M0 56L22 20L38 38L52 10L66 28L80 56Z" fill="rgba(255,255,255,.1)"/><circle cx="58" cy="9" r="8" fill="rgba(255,255,255,.1)"/></svg><div class="g-item-lbl">Landscape</div></div>
-      <div class="g-item g3"><svg width="70" height="44" viewBox="0 0 70 44"><path d="M5 34C16 20 26 16 35 22C44 16 54 20 65 34" stroke="rgba(255,255,255,.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg><div class="g-item-lbl">In Flight</div></div>
-      <div class="g-item g4"><svg width="80" height="56" viewBox="0 0 80 56"><path d="M0 56L18 28L32 44L48 14L64 34L80 56Z" fill="rgba(255,255,255,.08)"/></svg><div class="g-item-lbl">Golden Hour</div></div>
-      <div class="g-item g5"><svg width="60" height="38" viewBox="0 0 60 38"><path d="M4 28C14 16 22 12 30 18C38 12 46 16 56 28" stroke="rgba(255,255,255,.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg><div class="g-item-lbl">Wildlife</div></div>
-      <div class="g-item g6"><svg width="70" height="44" viewBox="0 0 70 44"><circle cx="35" cy="20" r="11" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.2)" stroke-width="1"/></svg><div class="g-item-lbl">Nature</div></div>
-      <div class="g-item g7"><svg width="60" height="38" viewBox="0 0 60 38"><path d="M4 28C14 16 22 12 30 18C38 12 46 16 56 28" stroke="rgba(255,255,255,.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg><div class="g-item-lbl">Birding</div></div>
-      <div class="g-item g8"><svg width="80" height="56" viewBox="0 0 80 56"><path d="M0 56L22 20L38 38L52 10L66 28L80 56Z" fill="rgba(255,255,255,.1)"/></svg><div class="g-item-lbl">Landscape</div></div>
-    </div>
-  </div>
-</div>
+<!-- SECTION CARDS -->
+<section class="sections-preview">
+  <a href="/resume" class="section-card card-resume reveal">
+    <div class="card-num">01</div>
+    <div class="card-label">Resume</div>
+    <h2>Business Technology Leader</h2>
+    <p>25+ years of technology leadership spanning ERP, CRM, Supply Chain, Finance, and Data platforms across global enterprises.</p>
+    <div class="card-arrow">Explore Resume →</div>
+  </a>
+  <a href="/photography" class="section-card card-photo reveal">
+    <div class="card-num">02</div>
+    <div class="card-label">Photography</div>
+    <h2>Birding & Landscape Portfolio</h2>
+    <p>A visual journal of patience and precision. Birding, wildlife, and landscape photography — from field to frame.</p>
+    <div class="card-arrow">View Portfolio →</div>
+  </a>
+  <a href="/tools" class="section-card card-tools reveal">
+    <div class="card-num">03</div>
+    <div class="card-label">Tools</div>
+    <h2>Web Products & Experiments</h2>
+    <p>Small bets and useful utilities. RemindMe and more tools crafted at the intersection of technology and everyday life.</p>
+    <div class="card-arrow">See Tools →</div>
+  </a>
+</section>
 
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div><div class="f-brand-name">studior<em>.cc</em></div><div class="f-brand-sub">Raju Bhupatiraju · San Jose, CA</div></div>
-      <div><div class="f-col-head">Pages</div><div class="f-col-links"><a href="/resume">Resume</a><a href="/photography">Photography</a><a href="/tools">Tools</a></div></div>
-      <div><div class="f-col-head">Connect</div><div class="f-col-links"><a href="https://linkedin.com/in/bhupatiraju/" target="_blank">LinkedIn</a><a href="https://github.com/tinkeran" target="_blank">GitHub</a><a href="mailto:rama_bhupatiraju@yahoo.com">Email</a><a href="https://www.salesforce.com/trailblazer/me-rajubhupatiraju" target="_blank">Trailhead</a></div></div>
-    </div>
-    <div class="footer-bottom"><span class="f-copy">© 2025 Raju Bhupatiraju. All rights reserved.</span><span class="f-ver">v2.0</span></div>
-  </div>
+  <div class="footer-logo">studio<span>r</span>.cc</div>
+  <p>© 2025 Raju Bhupatiraju. All rights reserved.</p>
+  <div class="footer-version">v2.0</div>
 </footer>
+
 <script src="/assets/main.js"></script>
+<script>
+  // Slideshow
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.slide-dot');
+  const counter = document.getElementById('counter');
+  const progressBar = document.getElementById('progressBar');
+  let current = 0, timer;
+  const labels = ['01','02','03'];
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    counter.textContent = labels[current] + ' / 03';
+    progressBar.style.animation = 'none';
+    progressBar.offsetHeight;
+    progressBar.style.animation = '';
+  }
+  function startAuto() { clearInterval(timer); timer = setInterval(() => goTo(current + 1), 5000); }
+  dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.target); startAuto(); }));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { goTo(current + 1); startAuto(); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { goTo(current - 1); startAuto(); }
+  });
+  startAuto();
+</script>
 </body>
 </html>

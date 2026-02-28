@@ -7,362 +7,241 @@
 <meta name="description" content="25+ years leading digital transformation. Senior Director, Business Technology at Nextiva.">
 <link rel="stylesheet" href="/assets/style.css">
 <style>
-
-/* ── RESUME LAYOUT ── */
-.resume-wrap {
-  max-width: 1100px; margin: 0 auto;
-  display: grid; grid-template-columns: 300px 1fr;
-  gap: 0; padding: 64px 24px 120px;
-}
-
-/* ── SIDEBAR ── */
-.sidebar {
-  padding-right: 48px;
-  position: sticky; top: 72px; align-self: start;
-}
-.sidebar-block { margin-bottom: 44px; }
-.sidebar-block:last-child { margin-bottom: 0; }
-.sb-head {
-  font-size: 11px; font-weight: 600; letter-spacing: .06em;
-  text-transform: uppercase; color: var(--ink4);
-  margin-bottom: 16px; padding-bottom: 10px;
-  border-bottom: 1px solid var(--off2);
-}
-
-/* Contact */
-.contact-link {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 13px; font-weight: 400; color: var(--ink3);
-  text-decoration: none; padding: 8px 0;
-  border-bottom: 1px solid var(--off);
-  transition: color .2s;
-  letter-spacing: -.01em;
-}
-.contact-link:last-child { border-bottom: none; }
-.contact-link:hover { color: var(--blue); }
-.contact-link svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--ink4); }
-
-/* Skills */
-.skill-group { margin-bottom: 16px; }
-.skill-group-label {
-  font-size: 10px; font-weight: 600; letter-spacing: .08em;
-  text-transform: uppercase; color: var(--ink4); margin-bottom: 8px;
-}
-.skill-pills { display: flex; flex-wrap: wrap; gap: 5px; }
-.skill-pill {
-  font-size: 12px; font-weight: 400; color: var(--ink2);
-  background: var(--off); padding: 4px 10px; border-radius: 980px;
-  transition: background .2s, color .2s;
-}
-.skill-pill:hover { background: rgba(0,113,227,.08); color: var(--blue); }
-
-/* Certs */
-.cert-item { padding: 10px 0; border-bottom: 1px solid var(--off); }
-.cert-item:last-child { border-bottom: none; }
-.cert-name { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.4; margin-bottom: 2px; }
-.cert-issuer { font-size: 12px; font-weight: 400; color: var(--ink4); }
-
-/* Education */
-.edu-degree { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
-.edu-school { font-size: 13px; font-weight: 400; color: var(--ink3); margin-bottom: 2px; }
-.edu-year { font-size: 12px; font-weight: 400; color: var(--ink4); }
-
-/* Awards */
-.award-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--off); }
-.award-item:last-child { border-bottom: none; }
-.award-icon {
-  width: 32px; height: 32px; background: rgba(0,113,227,.07);
-  border-radius: 8px; display: flex; align-items: center;
-  justify-content: center; font-size: 15px; flex-shrink: 0;
-}
-.award-name { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.4; }
-.award-org { font-size: 12px; font-weight: 400; color: var(--ink4); }
-
-/* ── MAIN CONTENT ── */
-.main-col { padding-left: 48px; border-left: 1px solid var(--off2); }
-
-.mc-section { margin-bottom: 72px; }
-.mc-section:last-child { margin-bottom: 0; }
-.mc-head {
-  font-size: 11px; font-weight: 600; letter-spacing: .06em;
-  text-transform: uppercase; color: var(--ink4);
-  margin-bottom: 28px; padding-bottom: 12px;
-  border-bottom: 1px solid var(--off2);
-  display: flex; align-items: center; justify-content: space-between;
-}
-
-/* About blurb */
-.about-blurb {
-  font-size: 17px; font-weight: 300; line-height: 1.8;
-  color: var(--ink2); letter-spacing: -.01em; margin-bottom: 28px;
-}
-.expertise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.expertise-item {
-  font-size: 13px; font-weight: 400; color: var(--ink3);
-  padding: 12px 14px; background: var(--off); border-radius: 10px;
-  border-left: 2px solid var(--blue); line-height: 1.5;
-  transition: background .2s;
-}
-.expertise-item:hover { background: rgba(0,113,227,.05); }
-
-/* Timeline */
-.timeline { display: flex; flex-direction: column; gap: 0; }
-.tl-item {
-  padding: 32px 0; border-bottom: 1px solid var(--off2);
-  transition: background .2s; border-radius: 8px;
-}
-.tl-item:last-child { border-bottom: none; }
-.tl-meta {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 10px; flex-wrap: wrap;
-}
-.tl-year { font-size: 12px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--ink4); }
-.tl-badge {
-  font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
-  color: var(--blue); background: rgba(0,113,227,.08);
-  padding: 3px 9px; border-radius: 980px;
-}
-.tl-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--off3); }
-.tl-location { font-size: 12px; font-weight: 400; color: var(--ink4); }
-.tl-co { font-size: 28px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); line-height: 1; margin-bottom: 4px; }
-.tl-role { font-size: 15px; font-weight: 400; color: var(--ink3); letter-spacing: -.01em; margin-bottom: 16px; }
-.tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.tl-bullets li {
-  font-size: 14px; font-weight: 400; line-height: 1.7; color: var(--ink3);
-  padding-left: 16px; position: relative; letter-spacing: -.01em;
-}
-.tl-bullets li::before { content: ''; position: absolute; left: 0; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
-.tl-stack { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
-.tl-pill {
-  font-size: 12px; font-weight: 400; color: var(--ink3);
-  background: var(--off); padding: 4px 10px; border-radius: 980px;
-}
-
-/* Multi-role block */
-.tl-company-block { padding: 32px 0; border-bottom: 1px solid var(--off2); }
-.tl-company-block:last-child { border-bottom: none; }
-.tl-company-name { font-size: 28px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); line-height: 1; margin-bottom: 2px; }
-.tl-company-tenure { font-size: 12px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--ink4); margin-bottom: 24px; }
-.tl-sub-role { padding: 20px 0; border-top: 1px solid var(--off2); }
-.tl-sub-title { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
-.tl-sub-dates { font-size: 12px; font-weight: 400; color: var(--ink4); letter-spacing: .04em; margin-bottom: 12px; }
-
-@media (max-width: 900px) {
-  .resume-wrap { grid-template-columns: 1fr; padding: 48px 24px 80px; }
-  .sidebar { position: static; padding-right: 0; margin-bottom: 48px; }
-  .main-col { padding-left: 0; border-left: none; border-top: 1px solid var(--off2); padding-top: 48px; }
-  .expertise-grid { grid-template-columns: 1fr; }
-}
+  .resume-wrap { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
+  .sidebar { background: var(--grey); padding: 64px 36px; border-right: 1px solid rgba(245,242,236,0.06); position: sticky; top: 0; align-self: start; }
+  .sidebar-section { margin-bottom: 48px; }
+  .sidebar-section:last-child { margin-bottom: 0; }
+  .sidebar-heading { font-family: var(--font-mono); font-size: 9px; letter-spacing: .35em; text-transform: uppercase; color: var(--red); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+  .sidebar-heading::after { content: ''; flex: 1; height: 1px; background: rgba(232,57,29,0.2); }
+  .skill-group { margin-bottom: 18px; }
+  .skill-group-name { font-family: var(--font-mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: rgba(245,242,236,0.3); margin-bottom: 8px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .skill-tag { font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; padding: 3px 9px; background: rgba(245,242,236,0.04); border: 1px solid rgba(245,242,236,0.1); color: rgba(245,242,236,0.55); border-radius: 2px; transition: all .2s; }
+  .skill-tag:hover { border-color: var(--gold); color: var(--gold); }
+  .cert-item { padding: 12px 0; border-bottom: 1px solid rgba(245,242,236,0.06); }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-name { font-size: 12px; line-height: 1.5; color: var(--white); margin-bottom: 3px; }
+  .cert-issuer { font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; color: var(--muted); }
+  .edu-degree { font-size: 13px; color: var(--white); font-weight: 500; margin-bottom: 4px; line-height: 1.4; }
+  .edu-school { font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; color: var(--teal); margin-bottom: 3px; }
+  .edu-year { font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; color: var(--muted); }
+  .award-item { display: flex; gap: 10px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid rgba(245,242,236,0.06); }
+  .award-item:last-child { border-bottom: none; }
+  .award-icon { width: 30px; height: 30px; background: rgba(240,180,41,0.1); border: 1px solid rgba(240,180,41,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
+  .award-name { font-size: 12px; color: var(--white); line-height: 1.5; }
+  .award-org { font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; color: var(--muted); }
+  .contact-link { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; color: var(--muted); text-decoration: none; padding: 8px 0; border-bottom: 1px solid rgba(245,242,236,0.05); transition: color .2s; }
+  .contact-link:last-child { border-bottom: none; }
+  .contact-link:hover { color: var(--gold); }
+  .contact-link svg { width: 13px; height: 13px; flex-shrink: 0; opacity: .6; }
+  .main-content { padding: 64px 72px; }
+  .section-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--red); display: block; }
+  .about-text { font-size: 15px; line-height: 1.9; color: rgba(245,242,236,0.72); font-weight: 300; margin-bottom: 32px; }
+  .expertise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .expertise-item { padding: 12px 14px; background: rgba(245,242,236,0.03); border: 1px solid rgba(245,242,236,0.07); border-left: 2px solid var(--red); font-size: 12px; line-height: 1.5; color: var(--muted); transition: border-color .2s, background .2s; }
+  .expertise-item:hover { border-left-color: var(--gold); background: rgba(240,180,41,0.03); }
+  .section-divider { height: 1px; background: rgba(245,242,236,0.06); margin: 64px 0; }
+  .timeline { position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: rgba(245,242,236,0.08); }
+  .timeline-item { padding-left: 40px; padding-bottom: 60px; position: relative; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot { position: absolute; left: -6px; top: 8px; width: 13px; height: 13px; border-radius: 50%; background: var(--black); border: 2px solid var(--red); z-index: 1; transition: background .2s; }
+  .timeline-item:hover .timeline-dot { background: var(--red); }
+  .job-company { font-family: var(--font-display); font-size: 30px; letter-spacing: .04em; color: var(--white); line-height: 1; }
+  .job-company span { color: var(--red); }
+  .job-title { font-size: 14px; color: rgba(245,242,236,0.55); font-weight: 400; margin: 6px 0 4px; }
+  .current-badge { display: inline-block; font-family: var(--font-mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); border: 1px solid var(--teal); padding: 2px 8px; border-radius: 2px; margin-left: 10px; vertical-align: middle; }
+  .job-meta { display: flex; gap: 14px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; color: rgba(245,242,236,0.28); margin-bottom: 18px; flex-wrap: wrap; }
+  .job-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .job-bullets li { font-size: 13.5px; line-height: 1.7; color: rgba(245,242,236,0.6); font-weight: 300; padding-left: 18px; position: relative; }
+  .job-bullets li::before { content: '->'; position: absolute; left: 0; color: var(--red); font-size: 11px; top: 3px; }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
+  .tech-pill { font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; padding: 3px 9px; background: rgba(26,201,168,0.07); border: 1px solid rgba(26,201,168,0.2); color: rgba(26,201,168,0.65); border-radius: 2px; }
+  .company-block { padding-left: 40px; padding-bottom: 60px; position: relative; }
+  .company-block-dot { position: absolute; left: -6px; top: 8px; width: 13px; height: 13px; border-radius: 50%; background: var(--black); border: 2px solid var(--red); z-index: 1; }
+  .company-name-header { font-family: var(--font-display); font-size: 30px; letter-spacing: .04em; color: var(--white); line-height: 1; margin-bottom: 4px; }
+  .company-tenure { font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; color: rgba(245,242,236,0.28); margin-bottom: 24px; }
+  .role-item { padding: 20px 0; border-top: 1px solid rgba(245,242,236,0.06); }
+  .role-title { font-size: 14px; color: var(--white); font-weight: 500; margin-bottom: 3px; }
+  .role-dates { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; color: rgba(245,242,236,0.28); margin-bottom: 12px; }
+  @media (max-width: 960px) { .resume-wrap { grid-template-columns: 1fr; } .sidebar { position: static; } .main-content { padding: 48px 24px; } .expertise-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 <nav>
-  <a href="/" class="nav-logo">studior<em>.cc</em></a>
+  <a href="/" class="nav-logo">studio<span>r</span>.cc</a>
   <ul class="nav-links">
-    <li><a href="/resume">Resume</a></li>
+    <li><a href="/resume" class="active">Resume</a></li>
     <li><a href="/photography">Photography</a></li>
     <li><a href="/tools">Tools</a></li>
   </ul>
 </nav>
-
-<!-- PAGE HERO -->
 <div class="page-hero">
-  <div class="page-eyebrow">01 / Resume</div>
-  <h1 class="page-h1">Raju <em>Bhupatiraju</em></h1>
-  <p class="page-sub">Digital Transformation &amp; Enterprise Systems Leader — 25+ years building the platforms that power global enterprises.</p>
+  <div class="page-hero-bg">RESUME</div>
+  <div class="page-label">01 — Resume</div>
+  <h1>Raju<em>Bhupatiraju</em></h1>
+  <p>Digital Transformation &amp; Enterprise Systems Leader — Enterprise Applications &amp; Architecture, Data Strategy &amp; Portfolio Management</p>
 </div>
-
-<!-- RESUME BODY -->
 <div class="resume-wrap">
-
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-
-    <div class="sidebar-block reveal">
-      <div class="sb-head">Contact</div>
-<a href="https://linkedin.com/in/bhupatiraju/" target="_blank" class="contact-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        linkedin.com/in/bhupatiraju
-      </a>
-      <a href="https://github.com/tinkeran" target="_blank" class="contact-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-        github.com/tinkeran
-      </a>
-      <a href="https://salesforce.com/trailblazer/me-rajubhupatiraju" target="_blank" class="contact-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
-        Salesforce Trailblazer
-      </a>
+    <div class="sidebar-section reveal">
+      <div class="sidebar-heading">Contact</div>
+<a href="https://www.linkedin.com/in/bhupatiraju/" target="_blank" class="contact-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>linkedin.com/in/bhupatiraju</a>
+      <a href="https://github.com/tinkeran" target="_blank" class="contact-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>github.com/tinkeran</a>
+      <a href="https://www.salesforce.com/trailblazer/me-rajubhupatiraju" target="_blank" class="contact-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Salesforce Trailblazer</a>
     </div>
-
-    <div class="sidebar-block reveal">
-      <div class="sb-head">Skills</div>
-      <div class="skill-group">
-        <div class="skill-group-label">ERP &amp; CRM</div>
-        <div class="skill-pills"><span class="skill-pill">Oracle Fusion ERP</span><span class="skill-pill">NetSuite</span><span class="skill-pill">Salesforce</span><span class="skill-pill">Oracle CPQ</span><span class="skill-pill">Oracle EBS</span></div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Integration &amp; Data</div>
-        <div class="skill-pills"><span class="skill-pill">Oracle Integration Cloud</span><span class="skill-pill">Boomi</span><span class="skill-pill">Celigo</span><span class="skill-pill">PowerBI</span><span class="skill-pill">dbt</span><span class="skill-pill">Anaplan</span></div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Finance &amp; Ops</div>
-        <div class="skill-pills"><span class="skill-pill">Coupa</span><span class="skill-pill">Concur</span><span class="skill-pill">Blackline</span><span class="skill-pill">FloQast</span><span class="skill-pill">Revpro</span><span class="skill-pill">Trullion</span></div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Leadership</div>
-        <div class="skill-pills"><span class="skill-pill">Digital Transformation</span><span class="skill-pill">Product Management</span><span class="skill-pill">Agile / Scrum</span><span class="skill-pill">Vendor Management</span><span class="skill-pill">SOX / ITGC</span></div>
-      </div>
+    <div class="sidebar-section reveal">
+      <div class="sidebar-heading">Skills</div>
+      <div class="skill-group"><div class="skill-group-name">ERP & CRM</div><div class="skill-tags"><span class="skill-tag">Oracle Fusion Cloud ERP</span><span class="skill-tag">NetSuite</span><span class="skill-tag">Salesforce</span><span class="skill-tag">Oracle CPQ</span><span class="skill-tag">Oracle EBS</span></div></div>
+      <div class="skill-group"><div class="skill-group-name">Integration & Data</div><div class="skill-tags"><span class="skill-tag">Oracle Integration Cloud</span><span class="skill-tag">Boomi</span><span class="skill-tag">Celigo</span><span class="skill-tag">PowerBI</span><span class="skill-tag">dbt</span><span class="skill-tag">Anaplan</span></div></div>
+      <div class="skill-group"><div class="skill-group-name">Finance & Ops</div><div class="skill-tags"><span class="skill-tag">Coupa</span><span class="skill-tag">Concur</span><span class="skill-tag">Blackline</span><span class="skill-tag">FloQast</span><span class="skill-tag">Revpro</span><span class="skill-tag">Trullion</span></div></div>
+      <div class="skill-group"><div class="skill-group-name">Leadership</div><div class="skill-tags"><span class="skill-tag">Digital Transformation</span><span class="skill-tag">Product Management</span><span class="skill-tag">Team Building</span><span class="skill-tag">Agile / Scrum</span><span class="skill-tag">Vendor Management</span><span class="skill-tag">SOX / ITGC</span></div></div>
+      <div class="skill-group"><div class="skill-group-name">Business Processes</div><div class="skill-tags"><span class="skill-tag">Quote to Cash</span><span class="skill-tag">Order to Cash</span><span class="skill-tag">Procure to Pay</span><span class="skill-tag">Record to Report</span><span class="skill-tag">Supply Chain</span><span class="skill-tag">Revenue Recognition</span></div></div>
     </div>
-
-    <div class="sidebar-block reveal">
-      <div class="sb-head">Certifications</div>
+    <div class="sidebar-section reveal">
+      <div class="sidebar-heading">Certifications</div>
       <div class="cert-item"><div class="cert-name">Certified Scrum Master</div><div class="cert-issuer">SCRUM Alliance</div></div>
       <div class="cert-item"><div class="cert-name">Oracle E-Business Suite R12 Certified Implementation Specialist</div><div class="cert-issuer">Oracle</div></div>
       <div class="cert-item"><div class="cert-name">Oracle Certified Professional — SQL, PL/SQL</div><div class="cert-issuer">Oracle</div></div>
     </div>
-
-    <div class="sidebar-block reveal">
-      <div class="sb-head">Education</div>
+    <div class="sidebar-section reveal">
+      <div class="sidebar-heading">Education</div>
       <div class="edu-degree">Masters in Computer Science</div>
       <div class="edu-school">College of Engineering, Andhra University</div>
       <div class="edu-year">2000 · India</div>
     </div>
-
-    <div class="sidebar-block reveal">
-      <div class="sb-head">Awards</div>
-      <div class="award-item">
-        <div class="award-icon">🏆</div>
-        <div><div class="award-name">2× Annual CIO Award Recipient</div><div class="award-org">Brocade Communications</div></div>
-      </div>
+    <div class="sidebar-section reveal">
+      <div class="sidebar-heading">Awards</div>
+      <div class="award-item"><div class="award-icon">🏆</div><div><div class="award-name">2× Annual CIO Award Recipient</div><div class="award-org">Brocade Communications</div></div></div>
     </div>
-
   </aside>
-
-  <!-- MAIN -->
-  <main class="main-col">
-
-    <div class="mc-section reveal">
-      <div class="mc-head">About</div>
-      <p class="about-blurb">Technology executive with 25+ years leading digital transformation and delivering measurable business outcomes across global enterprises. Proven in modernizing Supply Chain, ERP, CRM, Finance, e-Commerce, and Enterprise Data platforms. Recognized for building high-performance teams, eliminating execution barriers, and creating a culture of outcome-driven delivery.</p>
+  <main class="main-content">
+    <section style="margin-bottom:56px;" class="reveal">
+      <div class="section-label">About</div>
+      <p class="about-text">Technology executive with 25+ years leading digital transformation and delivering measurable business outcomes across global enterprises. Proven in modernizing Supply Chain, ERP, CRM, Finance, e-Commerce, and Enterprise Data platforms to drive growth, efficiency, and competitive advantage. Recognized for building high-performance teams, eliminating execution barriers, and creating a culture of outcome-driven delivery. Passionate about leveraging emerging technologies to empower business teams and accelerate value realization.</p>
       <div class="expertise-grid">
-        <div class="expertise-item">ERP implementations, Middleware / Cloud integration, Data analytics, Agile methodologies</div>
+        <div class="expertise-item">ERP implementations, Middleware / Cloud integration, Data analytics, and Agile methodologies</div>
         <div class="expertise-item">Industries: Hi-tech, Telecom, Consumer Appliances, Software Services, P&C Insurance, Cybersecurity</div>
         <div class="expertise-item">Billing systems for Recurring (Subscription), Consumption, and Non-recurring models</div>
         <div class="expertise-item">Pre-IPO, Post-IPO, Acquisitions &amp; Divestitures — process definition at every stage</div>
         <div class="expertise-item">Managing stacks: Salesforce, Oracle CPQ, Oracle Fusion Cloud ERP, NetSuite ERP</div>
-        <div class="expertise-item">Campaign to Cash: Quote-to-Order, Order-to-Cash, Procure-to-Pay, Channel Revenue</div>
+        <div class="expertise-item">Campaign to Cash: Quote-to-Order, Order-to-Cash, Procure-to-Pay, Channel Revenue Recognition</div>
       </div>
-    </div>
-
-    <div class="mc-section">
-      <div class="mc-head reveal">Experience</div>
+    </section>
+    <div class="section-divider"></div>
+    <section>
+      <div class="section-label">Experience</div>
       <div class="timeline">
-
-        <div class="tl-item reveal">
-          <div class="tl-meta"><span class="tl-year">Jun 2021 — Present</span><span class="tl-badge">Current</span><div class="tl-dot"></div><span class="tl-location">Remote · Scottsdale, AZ</span></div>
-          <div class="tl-co">Nextiva</div>
-          <div class="tl-role">Senior Director, Business Technology</div>
-          <ul class="tl-bullets">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="job-company">Nextiva<span>.</span></div>
+          <div class="job-title">Senior Director, Business Technology <span class="current-badge">Current</span></div>
+          <div class="job-meta"><span>Jun 2021 — Present</span><span>·</span><span>Remote — Scottsdale, AZ</span></div>
+          <ul class="job-bullets">
             <li>Responsible for Business Technology Engineering teams and Product Vision across Campaign to Cash.</li>
             <li>Built the team from ground up; led back-office systems consolidation into Oracle Fusion Cloud ERP spanning Order to Cash, Procure to Pay, and Record to Report as part of a corporate Digital Transformation initiative.</li>
             <li>Responsible for Salesforce, Oracle Fusion Cloud ERP, Middleware (Oracle Integration Cloud), Oracle CPQ Engineering teams, Enterprise Data team, and Production sustaining operations.</li>
+            <li>Managed Systems Roadmap, Delivery, Sustenance, and Vendor Management across a broad application portfolio.</li>
             <li>Portfolio: Salesforce (Sales, Service, Experience Cloud), Oracle Fusion Cloud ERP (Subscription Mgmt, PIM, Order Mgmt, Procurement, Payables, Revenue Mgmt, Receivables, Fixed Assets, GL), Coupa, Concur, Navan, Oracle Integration Cloud, Anaplan, Oracle EPM Suite, FloQast, Trullion, Oracle Fusion HCM, Paylocity, Dayforce, PowerBI, dbt.</li>
           </ul>
-          <div class="tl-stack"><span class="tl-pill">Oracle Fusion ERP</span><span class="tl-pill">Salesforce</span><span class="tl-pill">Oracle CPQ</span><span class="tl-pill">OIC</span><span class="tl-pill">PowerBI</span><span class="tl-pill">dbt</span><span class="tl-pill">Anaplan</span></div>
+          <div class="tech-stack"><span class="tech-pill">Oracle Fusion Cloud ERP</span><span class="tech-pill">Salesforce</span><span class="tech-pill">Oracle CPQ</span><span class="tech-pill">Oracle Integration Cloud</span><span class="tech-pill">PowerBI</span><span class="tech-pill">dbt</span><span class="tech-pill">Anaplan</span><span class="tech-pill">Coupa</span></div>
         </div>
-
-        <div class="tl-item reveal">
-          <div class="tl-meta"><span class="tl-year">Jul 2019 — Jun 2021</span><div class="tl-dot"></div><span class="tl-location">San Francisco, CA</span></div>
-          <div class="tl-co">Cloudflare</div>
-          <div class="tl-role">Business Systems Manager, Product Owner</div>
-          <ul class="tl-bullets">
-            <li>Defined Enterprise Back Office systems strategy and product vision.</li>
-            <li>Accountable for Finance and accounting business relationships, Systems Roadmap, Delivery, Sustenance, and Vendor Management.</li>
-            <li>Responsible for ITGC / SOD compliance across Order to Cash, Procure to Pay, and Record to Report.</li>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="job-company">Cloudflare<span>.</span></div>
+          <div class="job-title">Business Systems Manager, Product Owner</div>
+          <div class="job-meta"><span>Jul 2019 — Jun 2021</span><span>·</span><span>2 yrs</span><span>·</span><span>San Francisco, CA</span></div>
+          <ul class="job-bullets">
+            <li>Defined Enterprise Back Office systems strategy and product vision; accountable for Finance and accounting business relationships.</li>
+            <li>Managed Finance systems Roadmap, Delivery, Sustenance, Vendor Management, and ITGC / SOD compliance.</li>
+            <li>Oversaw Order to Cash, Procure to Pay, and Record to Report systems across a fast-scaling public company.</li>
             <li>Portfolio: NetSuite, Coupa, Concur, Revpro, Boomi, Celigo, Blackline, Anaplan, LeaseAccelerator, Ironclad, Oomnitza.</li>
           </ul>
-          <div class="tl-stack"><span class="tl-pill">NetSuite</span><span class="tl-pill">Boomi</span><span class="tl-pill">Celigo</span><span class="tl-pill">Blackline</span><span class="tl-pill">Revpro</span><span class="tl-pill">Coupa</span></div>
+          <div class="tech-stack"><span class="tech-pill">NetSuite</span><span class="tech-pill">Boomi</span><span class="tech-pill">Celigo</span><span class="tech-pill">Blackline</span><span class="tech-pill">Revpro</span><span class="tech-pill">Coupa</span><span class="tech-pill">Anaplan</span></div>
         </div>
-
-        <div class="tl-item reveal">
-          <div class="tl-meta"><span class="tl-year">Apr 2018 — Jul 2019</span><div class="tl-dot"></div><span class="tl-location">Foster City, CA</span></div>
-          <div class="tl-co">Guidewire</div>
-          <div class="tl-role">Principal Product Manager</div>
-          <ul class="tl-bullets">
-            <li>Strategic Projects Champion in IT; defined product vision and led Customer 360 metrics initiative.</li>
-            <li>End-to-end business process revision across Product, Sales, Marketing, Customer Success, Support, Professional Services, and Accounting — delivering operational visibility and higher cross-sell / up-sell performance.</li>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="job-company">Guidewire<span>.</span></div>
+          <div class="job-title">Principal Product Manager</div>
+          <div class="job-meta"><span>Apr 2018 — Jul 2019</span><span>·</span><span>1 yr 4 mos</span><span>·</span><span>Foster City, CA</span></div>
+          <ul class="job-bullets">
+            <li>Strategic Projects Champion in IT; defined product vision and led corporate Customer 360 metrics initiative.</li>
+            <li>End-to-end business process revision across Product, Sales, Marketing, Customer Success, Support, Professional Services, and Accounting — delivered operational data visibility resulting in higher cross-sell / up-sell and consistent management reporting.</li>
           </ul>
         </div>
-
-        <div class="tl-company-block reveal">
-          <div class="tl-company-name">Brocade</div>
-          <div class="tl-company-tenure">Feb 2008 — Apr 2018 · 10 yrs 3 mos · San Francisco Bay Area</div>
-          <div class="tl-sub-role">
-            <div class="tl-sub-title">Manager, Principal Business Systems Analyst</div>
-            <div class="tl-sub-dates">Nov 2012 — Apr 2018 · 5 yrs 6 mos</div>
-            <ul class="tl-bullets">
-              <li>Program managed complex transformations: ERP upgrades, Supply Chain, Order Management, Sales Compensation, Demand Planning, Channel Revenue, Subscription, Payables, Sales Tax/VAT, and Trade Compliance.</li>
-              <li>Led Oracle R12 upgrade — full suite, cross-functional — recipient of CIO Award for outstanding performance.</li>
-              <li>Led SRA business divestiture: implementation, testing, and cutover to Extreme Networks systems during transition service agreement.</li>
-              <li>Implemented Supply Chain initiative moving high-volume segment to ROP/Consigned Inventory with new contract manufacturers (USA, Europe, Asia, Mexico) and 3PL.</li>
+        <div class="company-block reveal">
+          <div class="company-block-dot"></div>
+          <div class="company-name-header">Brocade<span style="color:var(--red)">.</span></div>
+          <div class="company-tenure">Feb 2008 — Apr 2018 · 10 yrs 3 mos · San Francisco Bay Area</div>
+          <div class="role-item">
+            <div class="role-title">Manager, Principal Business Systems Analyst</div>
+            <div class="role-dates">Nov 2012 — Apr 2018 · 5 yrs 6 mos</div>
+            <ul class="job-bullets">
+              <li>Program managed complex transformations across ERP upgrades, Supply Chain, Order Management, Sales Compensation, Demand Planning, Channel Revenue, Subscription, Payables, Sales Tax/VAT, and Trade Compliance.</li>
+              <li>Led Oracle R12 upgrade — full suite with cross-functional team management — recipient of CIO Award for outstanding performance.</li>
+              <li>Led SRA business divestiture: implementation, testing, and cutover to Extreme Networks systems during the transition service agreement period.</li>
+              <li>Implemented major Supply Chain initiative moving high-volume product segment to ROP/Consigned Inventory with new contract manufacturers (USA, Europe, Asia, Mexico) and 3PL — resulting in high inventory turnover and on-time shipments.</li>
             </ul>
-            <div class="tl-stack"><span class="tl-pill">Oracle EBS R12</span><span class="tl-pill">Supply Chain</span><span class="tl-pill">SOX</span><span class="tl-pill">Channel Revenue</span></div>
+            <div class="tech-stack"><span class="tech-pill">Oracle EBS R12</span><span class="tech-pill">Supply Chain</span><span class="tech-pill">SOX</span><span class="tech-pill">PLM</span><span class="tech-pill">Channel Revenue</span></div>
           </div>
-          <div class="tl-sub-role">
-            <div class="tl-sub-title">Business Systems Analyst</div>
-            <div class="tl-sub-dates">Feb 2008 — Oct 2012 · 4 yrs 9 mos</div>
-            <ul class="tl-bullets">
-              <li>Cross-functional analyst automating Quote to Order, Order to Cash &amp; Revenue, Procure to Pay, and Channel Revenue Recognition across hardware, software, services, and subscription launches.</li>
+          <div class="role-item">
+            <div class="role-title">Business Systems Analyst</div>
+            <div class="role-dates">Feb 2008 — Oct 2012 · 4 yrs 9 mos</div>
+            <ul class="job-bullets">
+              <li>Cross-functional analyst automating and integrating Quote to Order, Order to Cash &amp; Revenue, Procure to Pay, and Channel Revenue Recognition.</li>
+              <li>Worked on hardware, software, services, and subscription product launches; requirements gathering, solution design, testing, go-live, and SOX compliance.</li>
             </ul>
           </div>
         </div>
-
-        <div class="tl-item reveal">
-          <div class="tl-meta"><span class="tl-year">Jun 2007 — Feb 2008</span><div class="tl-dot"></div><span class="tl-location">San Jose, CA</span></div>
-          <div class="tl-co">Cisco</div>
-          <div class="tl-role">Business Systems Analyst, Consultant</div>
-          <ul class="tl-bullets">
-            <li>Application configuration analyst for Service, Supply Chain, and Project Portfolio Management. Standardized configuration deployment processes.</li>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="job-company">Cisco<span>.</span></div>
+          <div class="job-title">Business Systems Analyst, Consultant</div>
+          <div class="job-meta"><span>Jun 2007 — Feb 2008</span><span>·</span><span>9 mos</span><span>·</span><span>San Jose, CA</span></div>
+          <ul class="job-bullets">
+            <li>Application configuration analyst for Service, Supply Chain, and Project Portfolio Management areas.</li>
+            <li>Standardized configuration deployment processes.</li>
           </ul>
         </div>
-
-        <div class="tl-company-block reveal">
-          <div class="tl-company-name">Wipro Technologies</div>
-          <div class="tl-company-tenure">Dec 2002 — Jun 2007 · 4 yrs 7 mos</div>
-          <div class="tl-sub-role">
-            <div class="tl-sub-title">Technical Lead Consultant</div>
-            <div class="tl-sub-dates">Feb 2005 — Jun 2007 · San Jose, CA</div>
-            <ul class="tl-bullets"><li>New feature implementations, acquisition integrations, ERP upgrades across Hi-Tech, Telecom, Consumer Appliances, and Utilities industries.</li></ul>
+        <div class="company-block reveal">
+          <div class="company-block-dot"></div>
+          <div class="company-name-header">Wipro Technologies<span style="color:var(--red)">.</span></div>
+          <div class="company-tenure">Dec 2002 — Jun 2007 · 4 yrs 7 mos</div>
+          <div class="role-item">
+            <div class="role-title">Technical Lead Consultant</div>
+            <div class="role-dates">Feb 2005 — Jun 2007 · 2 yrs 5 mos · San Jose, CA</div>
+            <ul class="job-bullets">
+              <li>New feature implementations, acquisition integrations, ERP upgrades, and production support across Hi-Tech, Telecom, Consumer Appliances, and Utilities industries.</li>
+            </ul>
           </div>
-          <div class="tl-sub-role">
-            <div class="tl-sub-title">Oracle E-Business Suite Consultant</div>
-            <div class="tl-sub-dates">Dec 2002 — Feb 2005 · Hyderabad, India</div>
-            <ul class="tl-bullets"><li>Oracle HCM and Oracle E-Business Suite implementations across Campaign to Cash workstreams in multiple industries.</li></ul>
+          <div class="role-item">
+            <div class="role-title">Oracle E-Business Suite Consultant</div>
+            <div class="role-dates">Dec 2002 — Feb 2005 · 2 yrs 2 mos · Hyderabad, India</div>
+            <ul class="job-bullets">
+              <li>Oracle HCM and Oracle E-Business Suite implementations across Campaign to Cash workstreams in multiple industries.</li>
+            </ul>
           </div>
         </div>
-
-        <div class="tl-item reveal">
-          <div class="tl-meta"><span class="tl-year">Apr 2001 — Dec 2002</span><div class="tl-dot"></div><span class="tl-location">Hyderabad, India</span></div>
-          <div class="tl-co">CMC Limited</div>
-          <div class="tl-role">Oracle Technical Consultant</div>
-          <ul class="tl-bullets"><li>Finance and Accounting Module product development for Municipal Corporations across India.</li></ul>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="job-company">CMC Limited<span>.</span></div>
+          <div class="job-title">Oracle Technical Consultant</div>
+          <div class="job-meta"><span>Apr 2001 — Dec 2002</span><span>·</span><span>1 yr 8 mos</span><span>·</span><span>Hyderabad, India</span></div>
+          <ul class="job-bullets">
+            <li>Finance and Accounting Module product development for Municipal Corporations across India.</li>
+          </ul>
         </div>
-
       </div>
-    </div>
+    </section>
   </main>
 </div>
-
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div><div class="f-brand-name">studior<em>.cc</em></div><div class="f-brand-sub">Raju Bhupatiraju · San Jose, CA</div></div>
-      <div><div class="f-col-head">Pages</div><div class="f-col-links"><a href="/resume">Resume</a><a href="/photography">Photography</a><a href="/tools">Tools</a></div></div>
-      <div><div class="f-col-head">Connect</div><div class="f-col-links"><a href="https://linkedin.com/in/bhupatiraju/" target="_blank">LinkedIn</a><a href="https://github.com/tinkeran" target="_blank">GitHub</a></div></div>
-    </div>
-    <div class="footer-bottom"><span class="f-copy">© 2025 Raju Bhupatiraju. All rights reserved.</span><span class="f-ver">v2.0</span></div>
-  </div>
+  <div class="footer-logo">studio<span>r</span>.cc</div>
+  <p>© 2025 Raju Bhupatiraju. All rights reserved.</p>
+  <div class="footer-version">v2.0</div>
 </footer>
 <script src="/assets/main.js"></script>
 </body>
