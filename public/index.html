@@ -31,6 +31,10 @@
   .slide-resume .content { max-width: 700px; position: relative; z-index: 2; padding-left: 80px; }
   .slide-resume .slide-tag { color: var(--red); }
   .slide-resume h1 em { color: var(--gold); }
+  .slide-resume .profile-img-wrap { position: absolute; right: 0; top: 0; bottom: 0; width: 50%; z-index: 1; pointer-events: none; }
+  .slide-resume .profile-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: grayscale(100%) contrast(1.05); opacity: .55; }
+  .slide-resume .profile-img-wrap::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--black) 0%, transparent 40%); z-index: 2; }
+  .slide-resume .profile-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--black) 0%, transparent 30%); z-index: 2; }
 
   /* ── SLIDE 2: PHOTOGRAPHY ── */
   .slide-photo { background: #000; }
@@ -122,6 +126,7 @@
   <!-- SLIDE 1: RESUME -->
   <div class="slide slide-resume active" data-slide="0">
     <div class="bg-text">LEADER</div>
+    <div class="profile-img-wrap"><img src="/assets/profile.png" alt="Raju Bhupatiraju"></div>
     <div class="content">
       <div class="slide-tag">01 — Resume</div>
       <h1>Business<em><span style="color:var(--gold)">Technology</span></em>Leader</h1>
