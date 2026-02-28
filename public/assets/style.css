@@ -47,7 +47,7 @@ footer p { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em;
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* ── BUTTONS ── */
-.btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; border: 1px solid currentColor; transition: all .25s; position: relative; overflow: hidden; }
+.btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; border: 1px solid currentColor; transition: all .25s; position: relative; overflow: hidden; isolation: isolate; }
 .btn::before { content: ''; position: absolute; inset: 0; background: currentColor; transform: translateX(-101%); transition: transform .25s; z-index: -1; }
 .btn:hover::before { transform: translateX(0); }
 .btn:hover { color: var(--black); }
